@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyhvcm0y6wev4"]
+
+[ext_resource type="AudioStream" uid="uid://cajdb28we1okh" path="res://assets/sounds/music/8-bit-game-158815.mp3" id="1_2luyk"]
+
+[node name="Music" type="AudioStreamPlayer"]
+stream = ExtResource("1_2luyk")
+autoplay = true
+bus = &"Music"
