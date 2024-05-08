@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cflsalp4mdp45"]
+[gd_scene load_steps=18 format=3 uid="uid://cflsalp4mdp45"]
 
 [ext_resource type="PackedScene" uid="uid://bfd31ir0ye02l" path="res://scenes/player.tscn" id="1_2gyne"]
 [ext_resource type="Texture2D" uid="uid://b8jm78srloal4" path="res://assets/sprites/Terrain/Terrain (16x16).png" id="2_s3qhi"]
@@ -8,8 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://bu3aqosb0tdum" path="res://assets/sprites/Items/Checkpoints/Checkpoint/Checkpoint (No Flag).png" id="4_vk63l"]
 [ext_resource type="Texture2D" uid="uid://cvmqjq75koevd" path="res://assets/sprites/Items/Checkpoints/End/End (Idle).png" id="5_8smc5"]
 [ext_resource type="PackedScene" uid="uid://cmnyopq6chno5" path="res://scenes/fps.tscn" id="5_y7ynk"]
-[ext_resource type="PackedScene" uid="uid://c0wr2jusmktl4" path="res://scenes/checkpoints/checkpoint.tscn" id="6_jjjjt"]
-[ext_resource type="PackedScene" uid="uid://d10wtsht3ok2b" path="res://scenes/checkpoints/start.tscn" id="7_ggfiw"]
 [ext_resource type="Texture2D" uid="uid://b7l84wafgcs1j" path="res://assets/sprites/Items/Checkpoints/Start/Start (Idle).png" id="8_4jsyv"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xc5n2"]
@@ -769,21 +767,5 @@ texture = ExtResource("4_kwt1a")
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="FPS" parent="HUD" instance=ExtResource("5_y7ynk")]
-
-[node name="Checkpoints" type="Node2D" parent="."]
-process_mode = 4
-visible = false
-
-[node name="Checkpoint" parent="Checkpoints" instance=ExtResource("6_jjjjt")]
-position = Vector2(-493, -32)
-
-[node name="Checkpoint2" parent="Checkpoints" instance=ExtResource("6_jjjjt")]
-position = Vector2(-343, -16)
-
-[node name="Checkpoint3" parent="Checkpoints" instance=ExtResource("6_jjjjt")]
-position = Vector2(-188, -16)
-
-[node name="Start" parent="Checkpoints" instance=ExtResource("7_ggfiw")]
-position = Vector2(-818, -32)
 
 [editable path="Background"]
