@@ -3,10 +3,12 @@ extends TileMap
 const START_SCENE = preload ("res://scenes/checkpoints/start.tscn")
 const CHECKPOINT_SCENE = preload ("res://scenes/checkpoints/checkpoint.tscn")
 const END_SCENE = preload ("res://scenes/checkpoints/end.tscn")
+const SPIKE_SCENE = preload("res://scenes/traps/spike.tscn")
 
 const START_TILE = 0
 const CHECKPOINT_TILE = 1
 const END_TILE = 2
+const SPIKE_TILE = 3;
 
 func _ready() -> void:
 	for layer_idx in range(get_layers_count()):
@@ -22,6 +24,8 @@ func get_scene_for_tile(tile_id) -> PackedScene:
 			return CHECKPOINT_SCENE
 		END_TILE:
 			return END_SCENE
+		SPIKE_TILE:
+			return SPIKE_SCENE
 		_:
 			return null # No match found, return null
 

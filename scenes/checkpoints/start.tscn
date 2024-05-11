@@ -144,18 +144,19 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4u14"]
-size = Vector2(54, 36)
+size = Vector2(3, 31)
 
 [node name="Start" type="Area2D"]
 script = ExtResource("1_mih7i")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hxuf7")
-animation = &"moving"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 14)
+position = Vector2(-17.5, 16.5)
 shape = SubResource("RectangleShape2D_g4u14")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="." to="." method="_play_moving_animation"]
+[connection signal="body_exited" from="." to="." method="_play_moving_animation"]

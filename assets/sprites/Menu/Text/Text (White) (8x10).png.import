@@ -1,34 +1,23 @@
 [remap]
 
-importer="texture"
-type="CompressedTexture2D"
+importer="font_data_image"
+type="FontFile"
 uid="uid://jjq1v4lskugd"
-path="res://.godot/imported/Text (White) (8x10).png-871eb9fbef95a8cb1beb48da00a07f21.ctex"
-metadata={
-"vram_texture": false
-}
+path="res://.godot/imported/Text (White) (8x10).png-871eb9fbef95a8cb1beb48da00a07f21.fontdata"
 
 [deps]
 
 source_file="res://assets/sprites/Menu/Text/Text (White) (8x10).png"
-dest_files=["res://.godot/imported/Text (White) (8x10).png-871eb9fbef95a8cb1beb48da00a07f21.ctex"]
+dest_files=["res://.godot/imported/Text (White) (8x10).png-871eb9fbef95a8cb1beb48da00a07f21.fontdata"]
 
 [params]
 
-compress/mode=0
-compress/high_quality=false
-compress/lossy_quality=0.7
-compress/hdr_compression=1
-compress/normal_map=0
-compress/channel_pack=0
-mipmaps/generate=false
-mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
-process/fix_alpha_border=true
-process/premult_alpha=false
-process/normal_map_invert_y=false
-process/hdr_as_srgb=false
-process/hdr_clamp_exposure=false
-process/size_limit=0
-detect_3d/compress_to=1
+character_ranges=PackedStringArray("\'A\'-\'J\'", "\'K\'-\'T\'", "\'U\'-\'Z\'", "\' \'", "\' \'", "\' \'", "\' \'", "\'0\'-\'9\'", "\'.\'", "\',\'", "\':\'", "\'?\'", "\'!\'", "\'(\'", "\')\'", "\'+\'", "0x2D")
+columns=10
+rows=5
+image_margin=Rect2i(0, 0, 0, 0)
+character_margin=Rect2i(1, 1, 0, 0)
+fallbacks=[Object(SystemFont,"resource_local_to_scene":false,"resource_name":"","fallbacks":Array[Font]([]),"font_names":PackedStringArray(),"font_italic":false,"font_weight":400,"font_stretch":100,"antialiasing":1,"generate_mipmaps":false,"allow_system_fallback":true,"force_autohinter":false,"hinting":1,"subpixel_positioning":1,"multichannel_signed_distance_field":false,"msdf_pixel_range":16,"msdf_size":48,"oversampling":0.0,"script":null)
+]
+compress=true
+scaling_mode=1

@@ -290,6 +290,7 @@ shape = SubResource("RectangleShape2D_f0qax")
 stream = ExtResource("6_tau7h")
 
 [node name="JumpParticles" type="CPUParticles2D" parent="."]
+unique_name_in_owner = true
 z_index = -1
 position = Vector2(1, 14)
 emitting = false
@@ -309,19 +310,29 @@ scale_amount_min = 0.6
 color_ramp = SubResource("Gradient_ley43")
 
 [node name="RunParticles" type="CPUParticles2D" parent="."]
+unique_name_in_owner = true
 z_index = -1
-position = Vector2(1, 14)
+position = Vector2(0, 15)
 emitting = false
 amount = 3
 lifetime = 0.2
 one_shot = true
-explosiveness = 1.0
+explosiveness = 0.6
 randomness = 1.0
 texture = ExtResource("7_d8ai2")
 emission_shape = 3
 emission_rect_extents = Vector2(10, 1)
-spread = 180.0
-initial_velocity_min = 41.51
+direction = Vector2(0, 0)
+spread = 39.48
+gravity = Vector2(0, 0)
+initial_velocity_min = 15.19
 initial_velocity_max = 41.51
-scale_amount_min = 0.6
+scale_amount_min = 0.3
+scale_amount_max = 0.8
 color_ramp = SubResource("Gradient_ley43")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.4
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_run_particles_timeout"]
