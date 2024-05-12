@@ -18,7 +18,6 @@ var jump_buffer_timer = 0;
 var cayote_timer: float = 0;
 var died: bool = false;
 
-signal die;
 
 #region Sounds
 @onready var jump_sound = $Sounds/Jump
@@ -28,8 +27,8 @@ signal die;
 
 func _ready():
 	randomize()
-	die.connect(_died)
 	add_to_group("player")
+	Events.PLAYER_DIED.connect(_died)
 	
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.

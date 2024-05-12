@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 Music="*res://scenes/music.tscn"
+Events="*res://scripts/singleton/events.gd"
+GameManager="*res://scripts/singleton/game_manager.gd"
 
 [display]
 
