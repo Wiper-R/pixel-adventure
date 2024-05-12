@@ -14,7 +14,7 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if not body.is_in_group("player"):
+	if not body.is_in_group(Groups.PLAYER):
 		return
 	
 	Events.PLAYER_DIED.emit()

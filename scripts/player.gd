@@ -17,6 +17,7 @@ class_name Player
 var jump_buffer_timer = 0;
 var cayote_timer: float = 0;
 var died: bool = false;
+var direction: int = 0;
 
 
 #region Sounds
@@ -27,57 +28,73 @@ var died: bool = false;
 
 func _ready():
 	randomize()
-	add_to_group("player")
+	add_to_group(Groups.PLAYER)
 	Events.PLAYER_DIED.connect(_died)
 	
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-func _process(delta: float):
+
+func _handle_timers(delta: float):
+	jump_buffer_timer -= delta
+	cayote_timer -= delta
+	
+func _handle_jump():
+	if died:
+		return
+		
 	if (jump_buffer_timer > 0)&&(is_on_floor()||cayote_timer > 0):
 		cayote_timer = 0
 		velocity.y = jump_force
 		jump_sound.play()
 		jump_particles.emitting = true
 		
-	jump_buffer_timer -= delta
-	cayote_timer -= delta
-
-func _physics_process(delta):
-	# Add the gravity.
-	if not is_on_floor():
-		var mult = gravity_multiplier;
-		
-		if velocity.y > 0:
-			mult *= fall_multiplier;
-			
-		velocity.y += gravity * delta * mult;
-		
-		velocity.y = clamp(velocity.y, jump_force, max_fall_speed)
-	
-		
+func _apply_gravity(delta: float):
 	if is_on_floor():
-		cayote_timer = cayote_time
-
-	# Handle jump.
-	if Input.is_action_just_pressed("jump") && !died:
+		return
+		
+	var mult = gravity_multiplier;
+	
+	if velocity.y > 0:
+		mult *= fall_multiplier;
+		
+	velocity.y += gravity * delta * mult;
+	velocity.y = clamp(velocity.y, jump_force, max_fall_speed)
+	
+func _reset_timers():
+	if is_on_floor():
+		cayote_timer = cayote_time;
+		
+	if Input.is_action_just_pressed("jump"):
 		jump_buffer_timer = jump_buffer_time
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = Input.get_axis("move_left", "move_right")
+func _handle_input():
+	direction = Input.get_axis("move_left", "move_right")
+
+func _process(delta: float):
+	_handle_timers(delta)
+	_handle_jump()
+	_reset_timers()
+	_handle_input()
+	_handle_animation()
 	
-	_handle_animation(direction)
-	
-	if direction && !died:
+func _handle_movement():
+	if died:
+		return
+		
+	if direction:
 		velocity.x = direction * movement_speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, movement_speed)
 
+func _physics_process(delta):
+	_apply_gravity(delta)
+	_handle_movement()
 	move_and_slide()
 
-func _handle_animation(direction: int):
+func _handle_animation():
+	# Don't change animation when player died, because it doesn't have health bar
 	if died:
 		return
 		
@@ -93,10 +110,8 @@ func _handle_animation(direction: int):
 			animated_sprite.play("fall")
 	
 	if direction < 0:
-		#camera.drag_horizontal_offset = move_toward(camera.drag_horizontal_offset, -abs(camera_horizontal_offset), delta * 0.5)
 		animated_sprite.flip_h = true
 	elif direction > 0:
-		#camera.drag_horizontal_offset = move_toward(camera.drag_horizontal_offset, abs(camera_horizontal_offset), delta * 0.5)
 		animated_sprite.flip_h = false
 
 func _died():
@@ -111,6 +126,6 @@ func _died():
 	await get_tree().create_timer(2).timeout
 	await get_tree().reload_current_scene()
 
-func _on_run_particles_timeout() -> void:
+func _emit_run_particles() -> void:
 	if abs(velocity.x) > 0 and is_on_floor():
 		run_particles.emitting = true
