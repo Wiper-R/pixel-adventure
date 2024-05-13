@@ -1,14 +1,12 @@
-extends Area2D
+extends Node2D
 
 @onready var animated_sprite = $AnimatedSprite2D
-@onready var collision_shape = $CollisionShape2D
 @onready var audio_stream_player: AudioStreamPlayer2D = $CheckpointSound
+@onready var interactable_component: Area2D = $InteractableComponent
 
-func _on_body_entered(body):
-    if not body.is_in_group(Groups.PLAYER):
-        return
+func _player_entered():
     animated_sprite.play("flag-out")
     audio_stream_player.play()
     await animated_sprite.animation_finished
     animated_sprite.play("idle")
-    collision_shape.queue_free()
+    interactable_component.queue_free()

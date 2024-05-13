@@ -20,6 +20,8 @@ var died: bool = false;
 var direction: int = 0;
 
 
+# FIXME: Fix Controller Axis movement
+
 #region Sounds
 @onready var jump_sound = $Sounds/Jump
 #endregion
@@ -44,7 +46,7 @@ func _handle_jump():
     if died:
         return
         
-    if (jump_buffer_timer > 0)&&(is_on_floor()||cayote_timer > 0):
+    if (jump_buffer_timer > 0) and (is_on_floor() or cayote_timer > 0):
         cayote_timer = 0
         velocity.y = jump_force
         jump_sound.play()
@@ -70,7 +72,9 @@ func _reset_timers():
         jump_buffer_timer = jump_buffer_time
 
 func _handle_input():
-    direction = Input.get_axis("move_left", "move_right")
+    #var raw_dir = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+    var raw_dir = Input.get_axis("move_left", "move_right")
+    direction = sign(raw_dir) * ceil(abs(raw_dir))
 
 func _process(delta: float):
     _handle_timers(delta)
@@ -123,8 +127,8 @@ func _died():
     var tween = create_tween()
     tween.tween_property(animated_sprite, "rotation", [-10, 10][randi() % 2], 4)
     get_node("CollisionShape2D").queue_free()
-    await get_tree().create_timer(2).timeout
-    await get_tree().reload_current_scene()
+    await get_tree().create_timer(1).timeout
+    await SceneManager.reload_scene()
 
 func _emit_run_particles() -> void:
     if abs(velocity.x) > 0 and is_on_floor():
