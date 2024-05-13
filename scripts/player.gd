@@ -10,9 +10,11 @@ class_name Player
 @export var fall_multiplier: float = 1.2;
 @export var max_fall_speed: float = 40;
 
-@onready var animated_sprite = $AnimatedSprite2D
+@onready var animation_player = $AnimationPlayer
 @onready var jump_particles = %JumpParticles
 @onready var run_particles = %RunParticles
+@onready var sprite: Sprite2D = $Sprite2D
+@onready var animation_tree: AnimationTree = $AnimationTree
 
 var jump_buffer_timer = 0;
 var cayote_timer: float = 0;
@@ -29,6 +31,7 @@ var direction: int = 0;
 # TODO: Handle dying properly
 
 func _ready():
+    animation_tree.active = true;
     randomize()
     add_to_group(Groups.PLAYER)
     Events.PLAYER_DIED.connect(_died)
@@ -99,33 +102,34 @@ func _physics_process(delta):
 
 func _handle_animation():
     # Don't change animation when player died, because it doesn't have health bar
-    if died:
-        return
-        
-    if is_on_floor():
-        if abs(velocity.x) > 0:
-            animated_sprite.play("run")
-        else:
-            animated_sprite.play("idle")
-    else:
-        if velocity.y < 0:
-            animated_sprite.play('jump')
-        elif velocity.y > 0:
-            animated_sprite.play("fall")
+    #if died:
+        #return
+        #
+    #if is_on_floor():
+        #if abs(velocity.x) > 0:
+            #animation_player.play("run")
+        #else:
+            #animation_player.play("idle")
+    #else:
+        #if velocity.y < 0:
+            #animation_player.play('jump')
+        #elif velocity.y > 0:
+            #animation_player.play("fall")
+    animation_tree.set("parameters/Move/blend_position", direction)
     
     if direction < 0:
-        animated_sprite.flip_h = true
+        sprite.flip_h = true
     elif direction > 0:
-        animated_sprite.flip_h = false
+        sprite.flip_h = false
 
 func _died():
     if died:
         return
     died = true
-    animated_sprite.play("hit")
+    animation_player.play("hit")
     velocity = Vector2(0, -400);
     var tween = create_tween()
-    tween.tween_property(animated_sprite, "rotation", [-10, 10][randi() % 2], 4)
+    tween.tween_property(sprite, "rotation", [-10, 10][randi() % 2], 4)
     get_node("CollisionShape2D").queue_free()
     await get_tree().create_timer(1).timeout
     await SceneManager.reload_scene()

@@ -31,7 +31,7 @@ func _animate_out() -> void:
         tween.tween_property(container, "scale", min_scale, duration)
         tween.tween_property(container, "modulate", Color(container.modulate, 0), duration)
         tween.set_parallel(false)
-            
+        
     await tween.finished
 
 

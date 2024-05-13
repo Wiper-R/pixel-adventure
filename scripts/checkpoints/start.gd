@@ -1,13 +1,13 @@
 extends Node2D
 
-@onready var animated_sprite = $AnimatedSprite2D
+@onready var animation_player = $AnimatedSprite2D
 
 func _player_interacted():
-    if animated_sprite.animation == "moving":
+    if animation_player.animation == "moving":
         return
         
-    animated_sprite.play("moving")
-    await animated_sprite.animation_finished
-    animated_sprite.play("idle")
+    animation_player.play("moving")
+    await animation_player.animation_finished
+    animation_player.play("idle")
     
     # Handle Other logic here
