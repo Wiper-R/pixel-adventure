@@ -348,6 +348,7 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+process_mode = 4
 tree_root = SubResource("AnimationNodeStateMachine_ijk0t")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Move/blend_position = -0.00072515

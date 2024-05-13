@@ -31,7 +31,7 @@ var direction: int = 0;
 # TODO: Handle dying properly
 
 func _ready():
-    animation_tree.active = true;
+    #animation_tree.active = true;
     randomize()
     add_to_group(Groups.PLAYER)
     Events.PLAYER_DIED.connect(_died)
@@ -101,20 +101,20 @@ func _physics_process(delta):
     move_and_slide()
 
 func _handle_animation():
-    # Don't change animation when player died, because it doesn't have health bar
-    #if died:
-        #return
-        #
-    #if is_on_floor():
-        #if abs(velocity.x) > 0:
-            #animation_player.play("run")
-        #else:
-            #animation_player.play("idle")
-    #else:
-        #if velocity.y < 0:
-            #animation_player.play('jump')
-        #elif velocity.y > 0:
-            #animation_player.play("fall")
+     #Don't change animation when player died, because it doesn't have health bar
+    if died:
+        return
+        
+    if is_on_floor():
+        if abs(velocity.x) > 0:
+            animation_player.play("run")
+        else:
+            animation_player.play("idle")
+    else:
+        if velocity.y < 0:
+            animation_player.play('jump')
+        elif velocity.y > 0:
+            animation_player.play("fall")
     animation_tree.set("parameters/Move/blend_position", direction)
     
     if direction < 0:
