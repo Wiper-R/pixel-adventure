@@ -1,13 +1,15 @@
 extends StateMachine
 
-@export var debug_state_label: Label;
+class_name PlayerStateMachine;
+
+@export var parent: Player;
 @export var animation_tree: AnimationTree;
 
-func _process(delta: float) -> void:
-    super(delta)
-    debug_state_label.text = "State: %s" % current_state.name;
-    
-func _ready() -> void:
+
+# TODO: Bring move_and_slide here?
+
+func ready() -> void:
     for state in get_children():
         if state is PlayerState:
+            state.parent = parent;
             state.playback = animation_tree.get("parameters/playback")

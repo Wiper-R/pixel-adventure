@@ -2,6 +2,7 @@ extends Node
 class_name State;
 
 
+
 var next_state: State = null;
 
 func state_process(delta: float) -> void:

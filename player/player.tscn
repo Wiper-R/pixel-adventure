@@ -1,9 +1,10 @@
-[gd_scene load_steps=39 format=3 uid="uid://bfd31ir0ye02l"]
+[gd_scene load_steps=43 format=3 uid="uid://bfd31ir0ye02l"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_71nf4"]
 [ext_resource type="Texture2D" uid="uid://ca8xa1hi4pwnn" path="res://player/assets/Pink Man/Idle (32x32).png" id="2_u300a"]
 [ext_resource type="Texture2D" uid="uid://n5bfra2d63ij" path="res://player/assets/Appearing (96x96).png" id="2_ydq8u"]
 [ext_resource type="AudioStream" uid="uid://dekpwogdeyd5f" path="res://player/sounds/jump.mp3" id="3_fnitr"]
+[ext_resource type="Script" path="res://player/player_movement.gd" id="4_tdj6h"]
 [ext_resource type="Texture2D" uid="uid://duvd2lkjnfyoo" path="res://player/assets/Pink Man/Fall (32x32).png" id="5_xpbek"]
 [ext_resource type="Texture2D" uid="uid://pr0kqwmlmo1l" path="res://player/assets/Pink Man/Hit (32x32).png" id="6_iaa1t"]
 [ext_resource type="Texture2D" uid="uid://dw806xfypd32r" path="res://assets/sprites/Other/Dust Particle.png" id="7_d8ai2"]
@@ -11,8 +12,11 @@
 [ext_resource type="Texture2D" uid="uid://bt3hmif7w80ek" path="res://player/assets/Pink Man/Run (32x32).png" id="8_vsfnp"]
 [ext_resource type="Script" path="res://player/states/player_state_machine.gd" id="9_n2hem"]
 [ext_resource type="Texture2D" uid="uid://rd4gif37cvm5" path="res://player/assets/Desappearing (96x96).png" id="10_8i6mg"]
-[ext_resource type="Script" path="res://player/states/ground.gd" id="10_do58u"]
-[ext_resource type="Script" path="res://player/states/air.gd" id="11_mhncd"]
+[ext_resource type="Script" path="res://player/states/idle.gd" id="14_h62lb"]
+[ext_resource type="Script" path="res://player/states/run.gd" id="15_8tib6"]
+[ext_resource type="Script" path="res://player/states/fall.gd" id="16_w0nlp"]
+[ext_resource type="Script" path="res://player/states/died.gd" id="17_17wn8"]
+[ext_resource type="Script" path="res://player/states/Jump.gd" id="17_bvybm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f0qax"]
 size = Vector2(14, 20)
@@ -406,11 +410,14 @@ states/move/position = Vector2(473, 128)
 transitions = ["move", "jump", SubResource("AnimationNodeStateMachineTransition_e8dxi"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_33p2x"), "fall", "move", SubResource("AnimationNodeStateMachineTransition_yk3d4"), "Start", "appearing", SubResource("AnimationNodeStateMachineTransition_smgmx"), "appearing", "move", SubResource("AnimationNodeStateMachineTransition_l20vs")]
 graph_offset = Vector2(-86, -77)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("state_machine")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("state_machine", "player_movement", "jump_state", "died_state")]
 z_index = 10
 script = ExtResource("1_71nf4")
 movement_speed = 200.0
 state_machine = NodePath("StateMachine")
+player_movement = NodePath("PlayerMovement")
+jump_state = NodePath("StateMachine/Jump")
+died_state = NodePath("StateMachine/Died")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("10_8i6mg")
@@ -424,6 +431,9 @@ shape = SubResource("RectangleShape2D_f0qax")
 
 [node name="Jump" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("3_fnitr")
+
+[node name="PlayerMovement" type="Node" parent="."]
+script = ExtResource("4_tdj6h")
 
 [node name="JumpParticles" type="CPUParticles2D" parent="."]
 unique_name_in_owner = true
@@ -469,7 +479,6 @@ color_ramp = SubResource("Gradient_ley43")
 
 [node name="Timer" type="Timer" parent="RunParticles"]
 wait_time = 0.4
-autostart = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -482,34 +491,42 @@ tree_root = SubResource("AnimationNodeStateMachine_ijk0t")
 anim_player = NodePath("../AnimationPlayer")
 parameters/move/blend_position = -0.000715792
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("debug_state_label", "animation_tree", "current_state")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("parent", "animation_tree", "default_state", "debug_state_label")]
 script = ExtResource("9_n2hem")
-debug_state_label = NodePath("../Label")
+parent = NodePath("..")
 animation_tree = NodePath("../AnimationTree")
-current_state = NodePath("Ground")
+default_state = NodePath("Idle")
+debug_state_label = NodePath("../Label")
 
-[node name="Ground" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "air_state", "jump_particles", "run_particles", "run_particles_timer", "jump_sound")]
-script = ExtResource("10_do58u")
-player = NodePath("../..")
-air_state = NodePath("../Air")
-jump_particles = NodePath("../../JumpParticles")
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("jump_state", "fall_state", "run_state")]
+script = ExtResource("14_h62lb")
+jump_state = NodePath("../Jump")
+fall_state = NodePath("../Fall")
+run_state = NodePath("../Run")
+
+[node name="Run" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "run_particles", "run_partciles_timer")]
+script = ExtResource("15_8tib6")
+idle_state = NodePath("../Idle")
 run_particles = NodePath("../../RunParticles")
-run_particles_timer = NodePath("../../RunParticles/Timer")
-jump_sound = NodePath("../../Sounds/Jump")
+run_partciles_timer = NodePath("../../RunParticles/Timer")
 
-[node name="Air" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "ground_state")]
-script = ExtResource("11_mhncd")
-gravity_multiplier = 1.2
-fall_multiplier = 2.5
-player = NodePath("../..")
-ground_state = NodePath("../Ground")
+[node name="Fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("jump_state", "idle_state")]
+script = ExtResource("16_w0nlp")
+jump_state = NodePath("../Jump")
+idle_state = NodePath("../Idle")
+
+[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "jump_particles")]
+script = ExtResource("17_bvybm")
+fall_state = NodePath("../Fall")
+jump_particles = NodePath("../../JumpParticles")
+
+[node name="Died" type="Node" parent="StateMachine"]
+script = ExtResource("17_17wn8")
 
 [node name="Label" type="Label" parent="."]
-offset_left = -11.0
-offset_top = -18.0
-offset_right = 82.0
-offset_bottom = 5.0
+offset_left = -12.0
+offset_top = -19.0
+offset_right = 81.0
+offset_bottom = 4.0
 scale = Vector2(0.28, 0.28)
-text = "State:"
-
-[connection signal="timeout" from="RunParticles/Timer" to="StateMachine/Ground" method="_on_timer_timeout"]
+horizontal_alignment = 1
