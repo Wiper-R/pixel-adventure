@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmnyopq6chno5"]
+
+[ext_resource type="Script" path="res://ui/fps/fps.gd" id="1_drqon"]
+
+[node name="FPS" type="Label"]
+modulate = Color(0.140625, 1, 0.254761, 1)
+texture_filter = 2
+offset_right = 40.0
+offset_bottom = 23.0
+text = "300"
+script = ExtResource("1_drqon")
