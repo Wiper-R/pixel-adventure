@@ -3,6 +3,10 @@ extends Node2D
 var duration = 0.1;
 var min_scale = Vector2.ONE * 0.4;
 
+func _ready() -> void:
+    for container in scene_transition.get_children():
+        container.scale = Vector2.ZERO;
+        container.modulate = Color(container.modulate, 0)
 
 func _animate_in() -> void:
     var tween = create_tween()
@@ -37,16 +41,17 @@ func _animate_out() -> void:
 
 func change_scene(scene: PackedScene) -> void:
     await _animate_in()
-    await get_tree().change_scene_to_packed(scene)
+    get_tree().change_scene_to_packed(scene)
     await _animate_out()
     
 func reload_scene() -> void:
     await _animate_in()
-    await get_tree().reload_current_scene()
+    get_tree().reload_current_scene()
     await _animate_out()
     
 
-func _ready() -> void:
-    get_tree().paused = true
-    await _animate_out()
-    get_tree().paused = false
+#func _ready() -> void:
+    #pass
+    #get_tree().paused = true
+    #await _animate_out()
+    #get_tree().paused = false

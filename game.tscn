@@ -828,7 +828,7 @@ layer_1/tile_data = PackedInt32Array(196562, 524288, 0, 196561, 458752, 0, 19656
 [node name="PlaceholderTiles" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_62ckl")
 format = 2
-layer_0/tile_data = PackedInt32Array(-131074, 2, 0, -65569, 1, 0, -65587, 0, 0, 262135, 3, 0, 262136, 3, 0, 262137, 3, 0, 262138, 3, 0, 262139, 3, 0, 262140, 3, 0, -65567, 1, 0, -24, 1, 0, -17, 1, 0, -11, 1, 0)
+layer_0/tile_data = PackedInt32Array(-131074, 2, 0, -65569, 1, 0, -65587, 0, 0, 262135, 3, 0, 262136, 3, 0, 262137, 3, 0, 262138, 3, 0, 262139, 3, 0, 262140, 3, 0, -65567, 1, 0, -24, 1, 0, -17, 1, 0, -11, 1, 0, 131025, 3, 0, 131026, 3, 0, 196563, 3, 0, 196564, 3, 0, 196565, 3, 0)
 script = SubResource("GDScript_wxpiq")
 
 [node name="Background" parent="." instance=ExtResource("7_b0qew")]
