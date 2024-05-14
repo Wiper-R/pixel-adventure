@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2qjsyqt3i0mb"
-path="res://.godot/imported/Melon.png-b763c721a6eb5ba1a73b4a816e899ff1.ctex"
+uid="uid://bfi8d18crnpe5"
+path="res://.godot/imported/Apple.png-1fbb2d66dd9fd047c59c8000b187c5a3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Items/Fruits/Melon.png"
-dest_files=["res://.godot/imported/Melon.png-b763c721a6eb5ba1a73b4a816e899ff1.ctex"]
+source_file="res://fruits/sprites/Apple.png"
+dest_files=["res://.godot/imported/Apple.png-1fbb2d66dd9fd047c59c8000b187c5a3.ctex"]
 
 [params]
 

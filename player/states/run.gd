@@ -7,7 +7,7 @@ class_name PlayerRunState;
 
 
 func on_enter() -> void:
-    playback.travel("move")
+    animation_player.play("run")
     run_partciles_timer.start()
     run_partciles_timer.timeout.connect(_emit_run_particles)
     

@@ -3,14 +3,17 @@ extends CharacterBody2D
 class_name Player
 
 @export var movement_speed = 250.0
-@export var state_machine: StateMachine;
+@export var state_machine: PlayerStateMachine;
 @export var player_movement: PlayerMovement;
 @export var jump_state: PlayerJumpState;
 @export var died_state: PlayerDiedState;
+@export var appearing_state: PlayerAppearingState;
+@export var disappearing_state: PlayerDisappearingState;
+@export var double_jump_state: PlayerDoubleJumpState;
 
+@onready var camera: Camera2D = $Camera2D;
 @onready var animation_player = $AnimationPlayer
 @onready var sprite: Sprite2D = $Sprite2D
-@onready var animation_tree: AnimationTree = $AnimationTree
 
 
 var died: bool = false;
@@ -21,9 +24,11 @@ var gravity = ProjectSettings.get("physics/2d/default_gravity")
 
 
 func _ready():
-    animation_tree.active = true;
+    #Engine.time_scale = .2;
     add_to_group(Groups.PLAYER)
     Events.PLAYER_DIED.connect(_died)
+    Events.PLAYER_TOUCHED_CUP.connect(_reached_cup)
+    
 
 
 func _handle_input():
@@ -58,14 +63,18 @@ func _apply_gravity(delta: float):
 
 func _physics_process(delta):
     _update_timers()
-    move_and_slide()
+    
+    if is_on_floor():
+        player_movement.has_double_jump = true;
+    
+    var current_state = state_machine.current_state as PlayerState;
+    if current_state and current_state.can_move:
+        move_and_slide()
 
 func _handle_animation():
      #Don't change animation when player died, because it doesn't have health bar
     if died:
         return
-        
-    animation_tree.set("parameters/move/blend_position", player_movement.direction)
     
     if player_movement.direction < 0:
         sprite.flip_h = true
@@ -76,21 +85,50 @@ func _died():
     if died:
         return
     died = true
+    # TODO: This is part of die state
     state_machine.switch_state(died_state)
     velocity = Vector2(0, -400);
     var tween = create_tween()
     tween.tween_property(sprite, "rotation", [-10, 10][randi() % 2], 4)
-    get_node("CollisionShape2D").queue_free()
+    get_node("CollisionShape2D").set_deferred("disabled", true)
     await get_tree().create_timer(1).timeout
-    await SceneManager.reload_scene()
+    tween.kill()
+    
+    if Checkpoint.last_checkpoint:
+        died = false;
+        position = Checkpoint.last_checkpoint.position;
+        camera.reset_smoothing()
+        get_node("CollisionShape2D").set_deferred("disabled", false)
+        sprite.rotation = 0
+        state_machine.switch_state(appearing_state)
+    else:
+        SceneManager.reload_scene()
+    
     
     
 func _update_timers() -> void:
     if is_on_floor():
         player_movement.cayote_timer = player_movement.cayote_time
     
-func _handle_jump() -> void:
+func _handle_jump() -> bool:
     if player_movement.cayote_timer > 0 and player_movement.jump_buffer_timer > 0:
         velocity.y = player_movement.jump_force;
         player_movement.cayote_timer = 0
-        state_machine.current_state.next_state = jump_state;
+        player_movement.jump_buffer_timer = 0
+        state_machine.switch_state(jump_state)
+        
+        return true;
+        
+    return false;
+
+func _handle_double_jump() -> bool:
+    if not player_movement.has_double_jump:
+        return false
+        
+    player_movement.has_double_jump = false;
+    velocity.y = player_movement.double_jump_force
+    state_machine.switch_state(double_jump_state)
+    return true;
+
+func _reached_cup() -> void:
+    state_machine.switch_state(disappearing_state)

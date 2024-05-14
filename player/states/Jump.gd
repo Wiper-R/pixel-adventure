@@ -3,10 +3,14 @@ class_name PlayerJumpState;
 
 @export var fall_state: PlayerFallState;
 @export var jump_particles: CPUParticles2D;
+@export var jump_sound: AudioStreamPlayer;
+@export var player_movement: PlayerMovement;
 
 func on_enter() -> void:
     jump_particles.emitting = true;
-    playback.travel("jump")
+    animation_player.play("jump")
+    jump_sound.play()
+    
 
 
 func state_physics_process(delta: float) -> void:
@@ -15,3 +19,8 @@ func state_physics_process(delta: float) -> void:
     
     if parent.velocity.y > 0:
         next_state = fall_state;
+
+
+func state_input(event: InputEvent) -> void:
+    if event.is_action_pressed("jump"):
+        parent._handle_double_jump()

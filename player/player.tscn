@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://bfd31ir0ye02l"]
+[gd_scene load_steps=34 format=3 uid="uid://bfd31ir0ye02l"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_71nf4"]
 [ext_resource type="Texture2D" uid="uid://ca8xa1hi4pwnn" path="res://player/assets/Pink Man/Idle (32x32).png" id="2_u300a"]
@@ -12,11 +12,15 @@
 [ext_resource type="Texture2D" uid="uid://bt3hmif7w80ek" path="res://player/assets/Pink Man/Run (32x32).png" id="8_vsfnp"]
 [ext_resource type="Script" path="res://player/states/player_state_machine.gd" id="9_n2hem"]
 [ext_resource type="Texture2D" uid="uid://rd4gif37cvm5" path="res://player/assets/Desappearing (96x96).png" id="10_8i6mg"]
+[ext_resource type="Texture2D" uid="uid://nflccgs3xw4x" path="res://player/assets/Pink Man/Double Jump (32x32).png" id="12_evxed"]
+[ext_resource type="Script" path="res://player/states/appearing.gd" id="13_cqsgi"]
 [ext_resource type="Script" path="res://player/states/idle.gd" id="14_h62lb"]
 [ext_resource type="Script" path="res://player/states/run.gd" id="15_8tib6"]
 [ext_resource type="Script" path="res://player/states/fall.gd" id="16_w0nlp"]
 [ext_resource type="Script" path="res://player/states/died.gd" id="17_17wn8"]
 [ext_resource type="Script" path="res://player/states/Jump.gd" id="17_bvybm"]
+[ext_resource type="Script" path="res://player/states/disappearing.gd" id="18_eork2"]
+[ext_resource type="Script" path="res://player/states/double_jump.gd" id="20_w18mn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f0qax"]
 size = Vector2(14, 20)
@@ -341,11 +345,53 @@ tracks/2/keys = {
 "values": [ExtResource("8_vsfnp")]
 }
 
+[sub_resource type="Animation" id="Animation_ytcud"]
+resource_name = "double_jump"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("12_evxed")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3m2tc"]
 _data = {
 "RESET": SubResource("Animation_nnlhx"),
 "appearing": SubResource("Animation_gmcun"),
 "disappearing": SubResource("Animation_7hsme"),
+"double_jump": SubResource("Animation_ytcud"),
 "fall": SubResource("Animation_3an5w"),
 "hit": SubResource("Animation_md32l"),
 "idle": SubResource("Animation_4hh33"),
@@ -353,75 +399,22 @@ _data = {
 "run": SubResource("Animation_1xew4")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x2np1"]
-animation = &"appearing"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sr8iu"]
-animation = &"fall"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nlgcd"]
-animation = &"hit"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_neqxp"]
-animation = &"jump"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i7udn"]
-animation = &"idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t6qyk"]
-animation = &"run"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xt1io"]
-animation = &"run"
-
-[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_mb1kk"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_i7udn")
-blend_point_0/pos = 0.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_t6qyk")
-blend_point_1/pos = 1.0
-blend_point_2/node = SubResource("AnimationNodeAnimation_xt1io")
-blend_point_2/pos = -1.0
-blend_mode = 1
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e8dxi"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_33p2x"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yk3d4"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_smgmx"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l20vs"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ijk0t"]
-states/appearing/node = SubResource("AnimationNodeAnimation_x2np1")
-states/appearing/position = Vector2(412, 11)
-states/fall/node = SubResource("AnimationNodeAnimation_sr8iu")
-states/fall/position = Vector2(753, 165)
-states/hit/node = SubResource("AnimationNodeAnimation_nlgcd")
-states/hit/position = Vector2(887, 240)
-states/jump/node = SubResource("AnimationNodeAnimation_neqxp")
-states/jump/position = Vector2(641, 39)
-states/move/node = SubResource("AnimationNodeBlendSpace1D_mb1kk")
-states/move/position = Vector2(473, 128)
-transitions = ["move", "jump", SubResource("AnimationNodeStateMachineTransition_e8dxi"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_33p2x"), "fall", "move", SubResource("AnimationNodeStateMachineTransition_yk3d4"), "Start", "appearing", SubResource("AnimationNodeStateMachineTransition_smgmx"), "appearing", "move", SubResource("AnimationNodeStateMachineTransition_l20vs")]
-graph_offset = Vector2(-86, -77)
-
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("state_machine", "player_movement", "jump_state", "died_state")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("state_machine", "player_movement", "jump_state", "died_state", "appearing_state", "disappearing_state", "double_jump_state")]
 z_index = 10
+collision_layer = 2
 script = ExtResource("1_71nf4")
 movement_speed = 200.0
 state_machine = NodePath("StateMachine")
 player_movement = NodePath("PlayerMovement")
 jump_state = NodePath("StateMachine/Jump")
 died_state = NodePath("StateMachine/Died")
+appearing_state = NodePath("StateMachine/Appearing")
+disappearing_state = NodePath("StateMachine/Disappearing")
+double_jump_state = NodePath("StateMachine/DoubleJump")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("10_8i6mg")
-hframes = 7
+hframes = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)
@@ -429,11 +422,15 @@ shape = SubResource("RectangleShape2D_f0qax")
 
 [node name="Sounds" type="Node2D" parent="."]
 
-[node name="Jump" type="AudioStreamPlayer2D" parent="Sounds"]
+[node name="Jump" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("3_fnitr")
+bus = &"SFX"
 
 [node name="PlayerMovement" type="Node" parent="."]
 script = ExtResource("4_tdj6h")
+jump_force = -350.0
+double_jump_force = -250.0
+fall_multiplier = 1.8
 
 [node name="JumpParticles" type="CPUParticles2D" parent="."]
 unique_name_in_owner = true
@@ -485,24 +482,24 @@ libraries = {
 "": SubResource("AnimationLibrary_3m2tc")
 }
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
-active = false
-tree_root = SubResource("AnimationNodeStateMachine_ijk0t")
-anim_player = NodePath("../AnimationPlayer")
-parameters/move/blend_position = -0.000715792
-
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("parent", "animation_tree", "default_state", "debug_state_label")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("parent", "animation_player", "default_state", "debug_state_label")]
 script = ExtResource("9_n2hem")
 parent = NodePath("..")
-animation_tree = NodePath("../AnimationTree")
-default_state = NodePath("Idle")
+animation_player = NodePath("../AnimationPlayer")
+default_state = NodePath("Appearing")
 debug_state_label = NodePath("../Label")
+
+[node name="Appearing" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("13_cqsgi")
+idle_state = NodePath("../Idle")
+can_move = false
 
 [node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("jump_state", "fall_state", "run_state")]
 script = ExtResource("14_h62lb")
 jump_state = NodePath("../Jump")
 fall_state = NodePath("../Fall")
 run_state = NodePath("../Run")
+can_move = false
 
 [node name="Run" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "run_particles", "run_partciles_timer")]
 script = ExtResource("15_8tib6")
@@ -510,18 +507,30 @@ idle_state = NodePath("../Idle")
 run_particles = NodePath("../../RunParticles")
 run_partciles_timer = NodePath("../../RunParticles/Timer")
 
+[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "jump_particles", "jump_sound", "player_movement")]
+script = ExtResource("17_bvybm")
+fall_state = NodePath("../Fall")
+jump_particles = NodePath("../../JumpParticles")
+jump_sound = NodePath("../../Sounds/Jump")
+player_movement = NodePath("../../PlayerMovement")
+
 [node name="Fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("jump_state", "idle_state")]
 script = ExtResource("16_w0nlp")
 jump_state = NodePath("../Jump")
 idle_state = NodePath("../Idle")
 
-[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "jump_particles")]
-script = ExtResource("17_bvybm")
-fall_state = NodePath("../Fall")
-jump_particles = NodePath("../../JumpParticles")
+[node name="Disappearing" type="Node" parent="StateMachine"]
+script = ExtResource("18_eork2")
+can_move = false
 
 [node name="Died" type="Node" parent="StateMachine"]
 script = ExtResource("17_17wn8")
+
+[node name="DoubleJump" type="Node" parent="StateMachine" node_paths=PackedStringArray("fall_state", "jump_particles", "jump_sound")]
+script = ExtResource("20_w18mn")
+fall_state = NodePath("../Fall")
+jump_particles = NodePath("../../JumpParticles")
+jump_sound = NodePath("../../Sounds/Jump")
 
 [node name="Label" type="Label" parent="."]
 offset_left = -12.0
@@ -530,3 +539,7 @@ offset_right = 81.0
 offset_bottom = 4.0
 scale = Vector2(0.28, 0.28)
 horizontal_alignment = 1
+
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Appearing" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Disappearing" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/DoubleJump" method="_on_animation_player_animation_finished"]

@@ -4,7 +4,7 @@ extends TileMap
 const START_SCENE = preload ("res://checkpoints/start/start.tscn")
 const CHECKPOINT_SCENE = preload ("res://checkpoints/checkpoint/checkpoint.tscn")
 const END_SCENE = preload ("res://checkpoints/end/end.tscn")
-const SPIKE_SCENE = preload("res://scenes/traps/spike.tscn")
+const SPIKE_SCENE = preload("res://traps/spike.tscn")
 
 const START_TILE = 0
 const CHECKPOINT_TILE = 1

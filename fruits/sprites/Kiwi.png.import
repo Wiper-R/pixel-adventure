@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ciex3gwvfhi7h"
-path="res://.godot/imported/Bananas.png-ef7ff3b4dda83dda25f081b0b3e18477.ctex"
+uid="uid://dyi6bq3qiwmmg"
+path="res://.godot/imported/Kiwi.png-b182fd24c4c9aad4e3b8c06b021a780f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Items/Fruits/Bananas.png"
-dest_files=["res://.godot/imported/Bananas.png-ef7ff3b4dda83dda25f081b0b3e18477.ctex"]
+source_file="res://fruits/sprites/Kiwi.png"
+dest_files=["res://.godot/imported/Kiwi.png-b182fd24c4c9aad4e3b8c06b021a780f.ctex"]
 
 [params]
 

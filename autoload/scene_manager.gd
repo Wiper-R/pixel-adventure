@@ -47,7 +47,9 @@ func change_scene(scene: PackedScene) -> void:
 func reload_scene() -> void:
     await _animate_in()
     get_tree().reload_current_scene()
+    get_tree().paused = true;
     await _animate_out()
+    get_tree().paused = false;
     
 
 #func _ready() -> void:

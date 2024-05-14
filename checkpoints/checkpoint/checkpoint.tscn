@@ -295,7 +295,7 @@ sprite_frames = SubResource("SpriteFrames_ma0as")
 animation = &"no-flag"
 autoplay = "no-flag"
 
-[node name="CheckpointSound" type="AudioStreamPlayer2D" parent="."]
+[node name="CheckpointSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_kpeux")
 bus = &"SFX"
 

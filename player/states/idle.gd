@@ -7,7 +7,7 @@ class_name PlayerIdleState;
 @export var run_state: PlayerRunState;
 
 func on_enter() -> void:
-    playback.travel("move")
+    animation_player.play("idle")
     
     
 

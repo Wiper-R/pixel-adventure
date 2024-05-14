@@ -1,4 +1,4 @@
-extends Node2D
+extends StaticBody2D
 
 @onready var animation_player = $AnimatedSprite2D
 @onready var confetti: Node2D = $Confetti
@@ -6,8 +6,9 @@ extends Node2D
 
 
 func _player_entered():
+    Events.PLAYER_TOUCHED_CUP.emit()
     animation_player.play("pressed")
-    confetti.emit_signal("confetti")
+    confetti.emit_signal('confetti')
     await animation_player.animation_finished
     animation_player.play('idle')
     interactable_component.queue_free()

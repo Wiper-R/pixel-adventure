@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://07odh86n11w4"
-path="res://.godot/imported/Orange.png-155f96f43e169820d62a5804e3737997.ctex"
+uid="uid://duktbpw21f4b6"
+path="res://.godot/imported/Cherries.png-42b52846e420368f15c27fbcbb50a2a9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Items/Fruits/Orange.png"
-dest_files=["res://.godot/imported/Orange.png-155f96f43e169820d62a5804e3737997.ctex"]
+source_file="res://fruits/sprites/Cherries.png"
+dest_files=["res://.godot/imported/Cherries.png-42b52846e420368f15c27fbcbb50a2a9.ctex"]
 
 [params]
 

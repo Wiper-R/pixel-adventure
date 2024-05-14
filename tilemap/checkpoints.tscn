@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=3 uid="uid://b2aslebn81uvn"]
+
+[ext_resource type="Texture2D" uid="uid://b7l84wafgcs1j" path="res://assets/sprites/Items/Checkpoints/Start/Start (Idle).png" id="1_l5i25"]
+[ext_resource type="Texture2D" uid="uid://bu3aqosb0tdum" path="res://assets/sprites/Items/Checkpoints/Checkpoint/Checkpoint (No Flag).png" id="2_uwifi"]
+[ext_resource type="Texture2D" uid="uid://cvmqjq75koevd" path="res://assets/sprites/Items/Checkpoints/End/End (Idle).png" id="3_pc468"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6n6va"]
+resource_name = "Start Checkpoint"
+texture = ExtResource("1_l5i25")
+0:0/size_in_atlas = Vector2i(4, 4)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_217ll"]
+resource_name = "Save Checkpoint"
+texture = ExtResource("2_uwifi")
+0:0/size_in_atlas = Vector2i(4, 4)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s1gd4"]
+resource_name = "Finish Checkpoint"
+texture = ExtResource("3_pc468")
+0:0/size_in_atlas = Vector2i(4, 4)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 8)
+
+[sub_resource type="TileSet" id="TileSet_62ckl"]
+sources/0 = SubResource("TileSetAtlasSource_6n6va")
+sources/1 = SubResource("TileSetAtlasSource_217ll")
+sources/2 = SubResource("TileSetAtlasSource_s1gd4")
+
+[sub_resource type="GDScript" id="GDScript_wxpiq"]
+script/source = "extends TileMap
+
+# FIXME: Use inspector @export
+const START_SCENE = preload (\"res://checkpoints/start/start.tscn\")
+const CHECKPOINT_SCENE = preload (\"res://checkpoints/checkpoint/checkpoint.tscn\")
+const END_SCENE = preload (\"res://checkpoints/end/end.tscn\")
+
+const Checkpoint = {
+    0: START_SCENE,
+    1: CHECKPOINT_SCENE,
+    2: END_SCENE,
+}
+
+
+func _ready() -> void:
+    for layer_idx in range(get_layers_count()):
+        var used_cells = get_used_cells(layer_idx)
+        for cell in used_cells:
+            instantiate_scene_at_cell(layer_idx, cell)
+            
+func instantiate_scene_at_cell(layer_idx: int, cell: Vector2i) -> void:
+    var tile_id = get_cell_source_id(layer_idx, cell)
+    var object_scene = Checkpoint[tile_id]
+    var tiledata = get_cell_tile_data(layer_idx, cell)
+    if not object_scene:
+        var tile_name = tile_set.get_source(tile_id).resource_name
+        var error_message = \"Scene not found:\\n
+            Tile ID: {tile_id}
+            Tile Name: {tile_name}
+            \".format({\"tile_id\": tile_id, \"tile_name\": tile_name})
+        push_error(error_message)
+        return
+    var object = object_scene.instantiate()
+    TilemapUtils.instantiate_scene_at_cell(self, layer_idx, cell, object)
+"
+
+[node name="Checkpoints" type="TileMap"]
+tile_set = SubResource("TileSet_62ckl")
+format = 2
+layer_0/tile_data = PackedInt32Array(-131074, 2, 0, -65569, 1, 0, -65587, 0, 0, -65567, 1, 0, -24, 1, 0, -17, 1, 0, -11, 1, 0)
+script = SubResource("GDScript_wxpiq")

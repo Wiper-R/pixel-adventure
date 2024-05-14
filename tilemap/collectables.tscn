@@ -1,0 +1,103 @@
+[gd_scene load_steps=28 format=3 uid="uid://dwgqspu3ooh83"]
+
+[ext_resource type="Texture2D" uid="uid://bfi8d18crnpe5" path="res://fruits/sprites/Apple.png" id="1_ovv2s"]
+[ext_resource type="Texture2D" uid="uid://ciex3gwvfhi7h" path="res://fruits/sprites/Bananas.png" id="2_sk4om"]
+[ext_resource type="Texture2D" uid="uid://duktbpw21f4b6" path="res://fruits/sprites/Cherries.png" id="3_ha7mj"]
+[ext_resource type="Texture2D" uid="uid://dyi6bq3qiwmmg" path="res://fruits/sprites/Kiwi.png" id="4_wa5mu"]
+[ext_resource type="Texture2D" uid="uid://2qjsyqt3i0mb" path="res://fruits/sprites/Melon.png" id="5_oyelq"]
+[ext_resource type="Texture2D" uid="uid://07odh86n11w4" path="res://fruits/sprites/Orange.png" id="6_7jjxi"]
+[ext_resource type="Texture2D" uid="uid://dk6poyhxjahns" path="res://fruits/sprites/Pineapple.png" id="7_rjmjy"]
+[ext_resource type="Texture2D" uid="uid://bi1ye5qsflryq" path="res://fruits/sprites/Strawberry.png" id="8_nw4mn"]
+[ext_resource type="Script" path="res://tilemap/collectables.gd" id="9_myd2e"]
+[ext_resource type="PackedScene" uid="uid://7hr1gxxafc7j" path="res://fruits/fruit.tscn" id="10_5dqox"]
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_u7kv1"]
+tile_data = PackedInt32Array(0, 19, 0)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_ybxx8"]
+tile_data = PackedInt32Array(0, 11, 0)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_2p14r"]
+tile_data = PackedInt32Array(0, 12, 0)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_ch1ax"]
+tile_data = PackedInt32Array(0, 13, 0)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_tohw7"]
+tile_data = PackedInt32Array(0, 15, 0)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_pafpr"]
+tile_data = PackedInt32Array(0, 16, 0)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_gf58p"]
+tile_data = PackedInt32Array(0, 17, 0)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_o1bph"]
+tile_data = PackedInt32Array(0, 18, 0)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kva21"]
+texture = ExtResource("1_ovv2s")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_23dt2"]
+texture = ExtResource("2_sk4om")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1515u"]
+texture = ExtResource("3_ha7mj")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y6pm7"]
+texture = ExtResource("4_wa5mu")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2bnjm"]
+texture = ExtResource("5_oyelq")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rtt83"]
+texture = ExtResource("6_7jjxi")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hlqug"]
+texture = ExtResource("7_rjmjy")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qyc0a"]
+texture = ExtResource("8_nw4mn")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_02j1c"]
+tile_shape = 3
+tile_size = Vector2i(32, 32)
+sources/11 = SubResource("TileSetAtlasSource_kva21")
+sources/12 = SubResource("TileSetAtlasSource_23dt2")
+sources/13 = SubResource("TileSetAtlasSource_1515u")
+sources/15 = SubResource("TileSetAtlasSource_y6pm7")
+sources/16 = SubResource("TileSetAtlasSource_2bnjm")
+sources/17 = SubResource("TileSetAtlasSource_rtt83")
+sources/18 = SubResource("TileSetAtlasSource_hlqug")
+sources/19 = SubResource("TileSetAtlasSource_qyc0a")
+pattern_0 = SubResource("TileMapPattern_u7kv1")
+pattern_1 = SubResource("TileMapPattern_ybxx8")
+pattern_2 = SubResource("TileMapPattern_2p14r")
+pattern_3 = SubResource("TileMapPattern_ch1ax")
+pattern_4 = SubResource("TileMapPattern_tohw7")
+pattern_5 = SubResource("TileMapPattern_pafpr")
+pattern_6 = SubResource("TileMapPattern_gf58p")
+pattern_7 = SubResource("TileMapPattern_o1bph")
+
+[node name="Collectables" type="TileMap"]
+tile_set = SubResource("TileSet_02j1c")
+format = 2
+layer_0/tile_data = PackedInt32Array(-22, 18, 0, -21, 18, 0, -20, 18, 0, -65557, 18, 0, -65556, 18, 0, -131093, 18, 0, -65547, 11, 0, -65546, 11, 0, -131083, 11, 0, -196625, 11, 0, -196624, 11, 0, -196623, 11, 0, -262161, 11, 0, -262160, 11, 0, -262159, 11, 0, -17, 16, 0, -16, 16, 0, -15, 16, 0, -65552, 16, 0, -65551, 16, 0)
+script = ExtResource("9_myd2e")
+fruit_scene = ExtResource("10_5dqox")
