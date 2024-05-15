@@ -11,4 +11,6 @@ func on_enter() -> void:
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
     if anim_name == "disappearing":
+        # TODO: Remove this from here
+        Checkpoint.last_checkpoint = null;
         SceneManager.reload_scene()

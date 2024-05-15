@@ -21,6 +21,16 @@ func _ready() -> void:
         var used_cells = get_used_cells(layer_idx)
         for cell in used_cells:
             var tile_id = get_cell_source_id(layer_idx, cell)
-            var fruit = fruit_scene.instantiate()
-            fruit.fruit_type = Fruits[tile_id]
-            TilemapUtils.instantiate_scene_at_cell(self, layer_idx, cell, fruit)
+            var tiledata = get_cell_tile_data(layer_idx, cell)
+            var object = fruit_scene.instantiate()
+            object.fruit_type = Fruits[tile_id]
+            
+            # Set the cell to be empty
+            set_cell(layer_idx, cell, -1)
+            
+            # Calculate the position
+            object.position = map_to_local(cell) * scale
+            object.position -= Vector2(tiledata.texture_origin)
+            
+            # Add the object to the tilemap
+            add_child(object)

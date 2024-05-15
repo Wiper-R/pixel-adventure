@@ -22,5 +22,8 @@ func state_physics_process(delta: float) -> void:
 
 
 func state_input(event: InputEvent) -> void:
+    if event.is_action_released("jump") and parent.velocity.y < 0:
+        parent.velocity.y *= player_movement.cut_jump_height
+        
     if event.is_action_pressed("jump"):
         parent._handle_double_jump()

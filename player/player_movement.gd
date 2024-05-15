@@ -8,6 +8,7 @@ var direction = 0;
 @export var cayote_time: float = 0.25;
 @export var jump_buffer_time: float = 0.1;
 @export var double_jump_force: float = -200;
+@export var cut_jump_height: float = 0.5;
 
 var jump_buffer_timer: float = 0;
 var cayote_timer: float = 0;

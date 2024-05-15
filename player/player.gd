@@ -11,7 +11,7 @@ class_name Player
 @export var disappearing_state: PlayerDisappearingState;
 @export var double_jump_state: PlayerDoubleJumpState;
 
-@onready var camera: Camera2D = $Camera2D;
+@onready var camera: MainCamera = $Camera2D;
 @onready var animation_player = $AnimationPlayer
 @onready var sprite: Sprite2D = $Sprite2D
 
@@ -86,6 +86,7 @@ func _died():
         return
     died = true
     # TODO: This is part of die state
+    camera.apply_shake()
     state_machine.switch_state(died_state)
     velocity = Vector2(0, -400);
     var tween = create_tween()
@@ -97,7 +98,7 @@ func _died():
     if Checkpoint.last_checkpoint:
         died = false;
         position = Checkpoint.last_checkpoint.position;
-        camera.reset_smoothing()
+        #camera.reset_smoothing()
         get_node("CollisionShape2D").set_deferred("disabled", false)
         sprite.rotation = 0
         state_machine.switch_state(appearing_state)
