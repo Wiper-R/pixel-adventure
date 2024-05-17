@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqjei5l3woxha"]
+[gd_scene load_steps=2 format=3 uid="uid://5nnsy8sv7nj0"]
 
 [ext_resource type="PackedScene" uid="uid://cedkysf45cf60" path="res://levels/base_level.tscn" id="1_e1sh0"]
 
@@ -10,7 +10,7 @@ position = Vector2(327, -17)
 [node name="Player" parent="." index="1"]
 position = Vector2(-861, -31)
 
-[node name="Camera2D" parent="Player" index="9"]
+[node name="Camera2D" parent="Player" index="10"]
 limit_right = 325
 
 [node name="World" parent="Tilemaps" index="0"]

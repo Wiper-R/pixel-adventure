@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bfd31ir0ye02l"]
+[gd_scene load_steps=35 format=3 uid="uid://bfd31ir0ye02l"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_71nf4"]
 [ext_resource type="Texture2D" uid="uid://ca8xa1hi4pwnn" path="res://player/assets/Pink Man/Idle (32x32).png" id="2_u300a"]
@@ -399,6 +399,9 @@ _data = {
 "run": SubResource("Animation_1xew4")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_l4siu"]
+radius = 0.5
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("state_machine", "player_movement", "jump_state", "died_state", "appearing_state", "disappearing_state", "double_jump_state")]
 z_index = 10
 collision_layer = 2
@@ -414,7 +417,7 @@ double_jump_state = NodePath("StateMachine/DoubleJump")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("10_8i6mg")
-hframes = 6
+hframes = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)
@@ -425,12 +428,6 @@ shape = SubResource("RectangleShape2D_f0qax")
 [node name="Jump" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("3_fnitr")
 bus = &"SFX"
-
-[node name="PlayerMovement" type="Node" parent="."]
-script = ExtResource("4_tdj6h")
-jump_force = -350.0
-double_jump_force = -250.0
-fall_multiplier = 1.8
 
 [node name="JumpParticles" type="CPUParticles2D" parent="."]
 unique_name_in_owner = true
@@ -482,6 +479,12 @@ wait_time = 0.4
 libraries = {
 "": SubResource("AnimationLibrary_3m2tc")
 }
+
+[node name="PlayerMovement" type="Node" parent="."]
+script = ExtResource("4_tdj6h")
+jump_force = -350.0
+double_jump_force = -300.0
+fall_multiplier = 1.5
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("parent", "animation_player", "default_state", "debug_state_label")]
 script = ExtResource("9_n2hem")
@@ -540,6 +543,13 @@ offset_right = 81.0
 offset_bottom = 4.0
 scale = Vector2(0.28, 0.28)
 horizontal_alignment = 1
+
+[node name="CenterArea" type="Area2D" parent="." groups=["player_center_point"]]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CenterArea"]
+shape = SubResource("CircleShape2D_l4siu")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Appearing" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Disappearing" method="_on_animation_player_animation_finished"]

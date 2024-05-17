@@ -801,7 +801,7 @@ texture = ExtResource("18_dm6pl")
 [sub_resource type="TileSet" id="TileSet_aplnt"]
 sources/0 = SubResource("TileSetAtlasSource_sloo2")
 
-[node name="Level" type="Node"]
+[node name="Level2" type="Node"]
 metadata/_edit_vertical_guides_ = [-429.0]
 
 [node name="World Boundary" type="Node" parent="."]

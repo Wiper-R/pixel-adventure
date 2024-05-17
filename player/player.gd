@@ -98,7 +98,6 @@ func _died():
     if Checkpoint.last_checkpoint:
         died = false;
         position = Checkpoint.last_checkpoint.position;
-        #camera.reset_smoothing()
         get_node("CollisionShape2D").set_deferred("disabled", false)
         sprite.rotation = 0
         state_machine.switch_state(appearing_state)
