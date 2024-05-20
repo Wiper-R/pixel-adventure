@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 class_name Player
 
-@export var movement_speed = 250.0
 @export var state_machine: PlayerStateMachine;
 @export var player_movement: PlayerMovement;
 @export var jump_state: PlayerJumpState;
@@ -10,8 +9,8 @@ class_name Player
 @export var appearing_state: PlayerAppearingState;
 @export var disappearing_state: PlayerDisappearingState;
 @export var double_jump_state: PlayerDoubleJumpState;
+@export var disabled_state: PlayerDisabledState;
 
-@onready var camera: MainCamera = $Camera2D;
 @onready var animation_player = $AnimationPlayer
 @onready var sprite: Sprite2D = $Sprite2D
 
@@ -21,6 +20,8 @@ var gravity = ProjectSettings.get("physics/2d/default_gravity")
 
 # TODO: Handle dying properly
 
+func _init() -> void:
+    Events.PLAYER_TOUCHED_CHECKPOINT.connect(_touched_checkpoint)
 
 
 func _ready():
@@ -48,9 +49,9 @@ func _process(delta: float):
     
 func _handle_movement():
     if player_movement.direction:
-        velocity.x = player_movement.direction * movement_speed
+        velocity.x = player_movement.direction * player_movement.movement_speed
     else:
-        velocity.x = move_toward(velocity.x, 0, movement_speed)
+        velocity.x = move_toward(velocity.x, 0, player_movement.movement_speed)
         
 func _apply_gravity(delta: float):
     var mult = player_movement.gravity_mutiplier;
@@ -86,7 +87,7 @@ func _died():
         return
     died = true
     # TODO: This is part of die state
-    camera.apply_shake()
+    get_viewport().get_camera_2d().apply_shake()
     state_machine.switch_state(died_state)
     velocity = Vector2(0, -400);
     var tween = create_tween()
@@ -95,14 +96,15 @@ func _died():
     await get_tree().create_timer(1).timeout
     tween.kill()
     
-    if Checkpoint.last_checkpoint:
-        died = false;
-        position = Checkpoint.last_checkpoint.position;
-        get_node("CollisionShape2D").set_deferred("disabled", false)
-        sprite.rotation = 0
-        state_machine.switch_state(appearing_state)
-    else:
-        SceneManager.reload_scene()
+    #if Checkpoint.last_checkpoint:
+        #died = false;
+        #position = Checkpoint.last_checkpoint.position;
+        #get_node("CollisionShape2D").set_deferred("disabled", false)
+        #sprite.rotation = 0
+        #state_machine.switch_state(appearing_state)
+    #else:
+        #SceneManager.reload_scene()
+    SceneManager.reload_scene()
     
     
     
@@ -132,3 +134,9 @@ func _handle_double_jump() -> bool:
 
 func _reached_cup() -> void:
     state_machine.switch_state(disappearing_state)
+
+
+#region Event Handlers
+func _touched_checkpoint(checkpoint: Checkpoint):
+    state_machine.switch_state(disabled_state)
+#endregion

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://d10wtsht3ok2b"]
+[gd_scene load_steps=26 format=3 uid="uid://d10wtsht3ok2b"]
 
 [ext_resource type="Script" path="res://checkpoints/start/start.gd" id="1_mih7i"]
 [ext_resource type="Texture2D" uid="uid://b7l84wafgcs1j" path="res://assets/sprites/Items/Checkpoints/Start/Start (Idle).png" id="2_1fb4i"]
@@ -147,6 +147,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4u14"]
 size = Vector2(3, 31)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iic4e"]
+size = Vector2(34, 8)
+
 [node name="Start" type="Node2D"]
 script = ExtResource("1_mih7i")
 
@@ -160,6 +163,15 @@ autoplay = "idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent"]
 position = Vector2(-17.5, 16.5)
 shape = SubResource("RectangleShape2D_g4u14")
+
+[node name="Platform" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
+position = Vector2(11, 28)
+shape = SubResource("RectangleShape2D_iic4e")
+
+[node name="PlayerSpawn" type="Marker2D" parent="."]
+position = Vector2(11, -43)
 
 [connection signal="player_entered" from="InteractableComponent" to="." method="_player_interacted"]
 [connection signal="player_exited" from="InteractableComponent" to="." method="_player_interacted"]

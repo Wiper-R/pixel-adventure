@@ -15,6 +15,7 @@ func state_physics_process(delta: float) -> void:
     parent._handle_movement()
     parent._handle_jump()
     parent._apply_gravity(delta)
+
     
     if abs(parent.velocity.x) > 0:
         next_state = run_state

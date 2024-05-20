@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="pixel-adventure"
-run/main_scene="res://game.tscn"
+run/main_scene="res://levels/level_1/level_1.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -23,9 +23,13 @@ GameManager="*res://autoload/game_manager.gd"
 Groups="*res://autoload/groups.gd"
 SceneManager="*res://autoload/scene_manager.tscn"
 
+[debug]
+
+settings/stdout/print_fps=true
+
 [display]
 
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
 window/vsync/vsync_mode=0
 
 [dotnet]

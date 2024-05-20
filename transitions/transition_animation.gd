@@ -1,10 +1,9 @@
 extends CanvasLayer
-class_name SceneTransition
+class_name TransitionAnimation;
 
 @export var animation_player: AnimationPlayer;
 @export var transition_in: String = "animate_in";
 @export var transition_out: String = "animate_out";
-@onready var container: VBoxContainer = $VBoxContainer
 
 func _transition_in():
     animation_player.play(transition_in)

@@ -4,9 +4,11 @@
 [ext_resource type="Script" path="res://background/background.gd" id="1_see0v"]
 
 [node name="Background" type="ParallaxBackground"]
-scale = Vector2(2, 2)
-transform = Transform2D(2, 0, 0, 2, 0, 0)
+scale = Vector2(3, 3)
+transform = Transform2D(3, 0, 0, 3, 0, 0)
+scroll_ignore_camera_zoom = true
 script = ExtResource("1_see0v")
+speed = 80
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="."]
 motion_mirroring = Vector2(1280, 768)

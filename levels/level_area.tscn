@@ -1,37 +1,28 @@
-[gd_scene load_steps=52 format=3 uid="uid://cflsalp4mdp45"]
+[gd_scene load_steps=39 format=3 uid="uid://b3tlg15vf27et"]
 
-[ext_resource type="PackedScene" uid="uid://bfd31ir0ye02l" path="res://player/player.tscn" id="1_4tiuk"]
-[ext_resource type="Script" path="res://common/extended_camera.gd" id="2_brk2f"]
-[ext_resource type="Texture2D" uid="uid://b8jm78srloal4" path="res://assets/sprites/Terrain/Terrain (16x16).png" id="2_f7pwu"]
-[ext_resource type="Texture2D" uid="uid://bfi8d18crnpe5" path="res://fruits/sprites/Apple.png" id="7_6udyb"]
-[ext_resource type="PackedScene" uid="uid://c2brs50wbj7w" path="res://background/background.tscn" id="7_b0qew"]
-[ext_resource type="Texture2D" uid="uid://b5wfo338vxt6v" path="res://assets/sprites/Background/Brown.png" id="8_1wpba"]
-[ext_resource type="Texture2D" uid="uid://ciex3gwvfhi7h" path="res://fruits/sprites/Bananas.png" id="8_72qp6"]
-[ext_resource type="Texture2D" uid="uid://dkur53mjtyfre" path="res://traps/spike/Idle.png" id="9_1niwc"]
-[ext_resource type="Texture2D" uid="uid://duktbpw21f4b6" path="res://fruits/sprites/Cherries.png" id="9_fibbm"]
-[ext_resource type="PackedScene" uid="uid://cmnyopq6chno5" path="res://ui/fps/fps.tscn" id="9_qftqp"]
-[ext_resource type="Texture2D" uid="uid://dyi6bq3qiwmmg" path="res://fruits/sprites/Kiwi.png" id="10_2kipd"]
-[ext_resource type="FontFile" uid="uid://jjq1v4lskugd" path="res://assets/sprites/Menu/Text/Text (White) (8x10).png" id="10_b0wis"]
-[ext_resource type="Script" path="res://tilemap/traps.gd" id="10_sqcig"]
-[ext_resource type="Texture2D" uid="uid://b7l84wafgcs1j" path="res://assets/sprites/Items/Checkpoints/Start/Start (Idle).png" id="11_5n8dv"]
-[ext_resource type="Texture2D" uid="uid://2qjsyqt3i0mb" path="res://fruits/sprites/Melon.png" id="11_c3bkg"]
-[ext_resource type="Texture2D" uid="uid://bu3aqosb0tdum" path="res://assets/sprites/Items/Checkpoints/Checkpoint/Checkpoint (No Flag).png" id="12_3sjnu"]
-[ext_resource type="Texture2D" uid="uid://07odh86n11w4" path="res://fruits/sprites/Orange.png" id="12_126ed"]
-[ext_resource type="Texture2D" uid="uid://dk6poyhxjahns" path="res://fruits/sprites/Pineapple.png" id="13_wb3nc"]
-[ext_resource type="Texture2D" uid="uid://cvmqjq75koevd" path="res://assets/sprites/Items/Checkpoints/End/End (Idle).png" id="13_wqypm"]
-[ext_resource type="Texture2D" uid="uid://bi1ye5qsflryq" path="res://fruits/sprites/Strawberry.png" id="14_ev3uk"]
-[ext_resource type="Script" path="res://tilemap/collectables.gd" id="15_5qdxc"]
-[ext_resource type="PackedScene" uid="uid://7hr1gxxafc7j" path="res://fruits/fruit.tscn" id="16_jp5d7"]
-[ext_resource type="PackedScene" uid="uid://by5os6h7ljcdu" path="res://traps/spike/spike.tscn" id="22_cktjg"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xc5n2"]
+[ext_resource type="Script" path="res://levels/level_area.gd" id="1_d47m4"]
+[ext_resource type="Texture2D" uid="uid://b8jm78srloal4" path="res://assets/sprites/Terrain/Terrain (16x16).png" id="1_lt651"]
+[ext_resource type="Texture2D" uid="uid://bfi8d18crnpe5" path="res://fruits/sprites/Apple.png" id="2_adcwp"]
+[ext_resource type="Texture2D" uid="uid://ciex3gwvfhi7h" path="res://fruits/sprites/Bananas.png" id="3_b20of"]
+[ext_resource type="Texture2D" uid="uid://duktbpw21f4b6" path="res://fruits/sprites/Cherries.png" id="4_ntseh"]
+[ext_resource type="Texture2D" uid="uid://dyi6bq3qiwmmg" path="res://fruits/sprites/Kiwi.png" id="5_cyf6g"]
+[ext_resource type="Texture2D" uid="uid://2qjsyqt3i0mb" path="res://fruits/sprites/Melon.png" id="6_gspcg"]
+[ext_resource type="Texture2D" uid="uid://07odh86n11w4" path="res://fruits/sprites/Orange.png" id="7_lxdrs"]
+[ext_resource type="Texture2D" uid="uid://dk6poyhxjahns" path="res://fruits/sprites/Pineapple.png" id="8_5831q"]
+[ext_resource type="Texture2D" uid="uid://bi1ye5qsflryq" path="res://fruits/sprites/Strawberry.png" id="9_pmwq4"]
+[ext_resource type="Script" path="res://tilemap/collectables.gd" id="10_b0v2j"]
+[ext_resource type="PackedScene" uid="uid://7hr1gxxafc7j" path="res://fruits/fruit.tscn" id="11_ynr8h"]
+[ext_resource type="Texture2D" uid="uid://dkur53mjtyfre" path="res://traps/spike/Idle.png" id="12_7viwv"]
+[ext_resource type="Script" path="res://tilemap/traps.gd" id="13_csqpv"]
+[ext_resource type="PackedScene" uid="uid://by5os6h7ljcdu" path="res://traps/spike/spike.tscn" id="14_60387"]
+[ext_resource type="Script" path="res://common/extended_camera.gd" id="15_r0nyw"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_4ev0x"]
 tile_data = PackedInt32Array(0, 1114112, 1, 1, 1179648, 1, 2, 1179648, 1, 3, 1245184, 1)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u1ht8"]
 resource_name = "Blocks"
-texture = ExtResource("2_f7pwu")
+texture = ExtResource("1_lt651")
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 0
@@ -691,7 +682,7 @@ texture = ExtResource("2_f7pwu")
 20:10/0/physics_layer_0/angular_velocity = 0.0
 20:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
-[sub_resource type="TileSet" id="TileSet_d1udv"]
+[sub_resource type="TileSet" id="TileSet_c71jf"]
 physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 0
 terrain_set_0/mode = 0
@@ -727,46 +718,46 @@ tile_data = PackedInt32Array(0, 17, 0)
 tile_data = PackedInt32Array(0, 18, 0)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kva21"]
-texture = ExtResource("7_6udyb")
+texture = ExtResource("2_adcwp")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_23dt2"]
-texture = ExtResource("8_72qp6")
+texture = ExtResource("3_b20of")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1515u"]
-texture = ExtResource("9_fibbm")
+texture = ExtResource("4_ntseh")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y6pm7"]
-texture = ExtResource("10_2kipd")
+texture = ExtResource("5_cyf6g")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2bnjm"]
-texture = ExtResource("11_c3bkg")
+texture = ExtResource("6_gspcg")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rtt83"]
-texture = ExtResource("12_126ed")
+texture = ExtResource("7_lxdrs")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hlqug"]
-texture = ExtResource("13_wb3nc")
+texture = ExtResource("8_5831q")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qyc0a"]
-texture = ExtResource("14_ev3uk")
+texture = ExtResource("9_pmwq4")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_02j1c"]
+[sub_resource type="TileSet" id="TileSet_jfv8n"]
 tile_shape = 3
 tile_size = Vector2i(32, 32)
 sources/11 = SubResource("TileSetAtlasSource_kva21")
@@ -786,82 +777,9 @@ pattern_5 = SubResource("TileMapPattern_pafpr")
 pattern_6 = SubResource("TileMapPattern_gf58p")
 pattern_7 = SubResource("TileMapPattern_o1bph")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6n6va"]
-resource_name = "Start Checkpoint"
-texture = ExtResource("11_5n8dv")
-0:0/size_in_atlas = Vector2i(4, 4)
-0:0/0 = 0
-0:0/0/texture_origin = Vector2i(0, 8)
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_217ll"]
-resource_name = "Save Checkpoint"
-texture = ExtResource("12_3sjnu")
-0:0/size_in_atlas = Vector2i(4, 4)
-0:0/0 = 0
-0:0/0/texture_origin = Vector2i(0, 8)
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s1gd4"]
-resource_name = "Finish Checkpoint"
-texture = ExtResource("13_wqypm")
-0:0/size_in_atlas = Vector2i(4, 4)
-0:0/0 = 0
-0:0/0/texture_origin = Vector2i(0, 8)
-
-[sub_resource type="TileSet" id="TileSet_62ckl"]
-sources/0 = SubResource("TileSetAtlasSource_6n6va")
-sources/1 = SubResource("TileSetAtlasSource_217ll")
-sources/2 = SubResource("TileSetAtlasSource_s1gd4")
-
-[sub_resource type="GDScript" id="GDScript_wxpiq"]
-script/source = "extends TileMap
-
-# FIXME: Use inspector @export
-const START_SCENE = preload (\"res://checkpoints/start/start.tscn\")
-const CHECKPOINT_SCENE = preload (\"res://checkpoints/checkpoint/checkpoint.tscn\")
-const END_SCENE = preload (\"res://checkpoints/end/end.tscn\")
-
-const Checkpoint = {
-    0: START_SCENE,
-    1: CHECKPOINT_SCENE,
-    2: END_SCENE,
-}
-
-
-func _ready() -> void:
-    for layer_idx in range(get_layers_count()):
-        var used_cells = get_used_cells(layer_idx)
-        for cell in used_cells:
-            instantiate_scene_at_cell(layer_idx, cell)
-            
-func instantiate_scene_at_cell(layer_idx: int, cell: Vector2i) -> void:
-    var tile_id = get_cell_source_id(layer_idx, cell)
-    var object_scene = Checkpoint[tile_id]
-    var tiledata = get_cell_tile_data(layer_idx, cell)
-    if not object_scene:
-        var tile_name = tile_set.get_source(tile_id).resource_name
-        var error_message = \"Scene not found:\\n
-            Tile ID: {tile_id}
-            Tile Name: {tile_name}
-            \".format({\"tile_id\": tile_id, \"tile_name\": tile_name})
-        push_error(error_message)
-        return
-        
-    var object = object_scene.instantiate()
-    
-    # Set the cell to be empty
-    set_cell(layer_idx, cell, -1)
-    
-    # Calculate the position
-    object.position = map_to_local(cell) * scale
-    object.position -= Vector2(tiledata.texture_origin)
-    
-    # Add the object to the tilemap
-    add_child(object)
-"
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sloo2"]
 resource_name = "Tile"
-texture = ExtResource("9_1niwc")
+texture = ExtResource("12_7viwv")
 0:0/next_alternative_id = 6
 0:0/0 = 0
 0:0/3 = 3
@@ -872,99 +790,36 @@ texture = ExtResource("9_1niwc")
 0:0/5 = 5
 0:0/5/flip_v = true
 
-[sub_resource type="TileSet" id="TileSet_aplnt"]
+[sub_resource type="TileSet" id="TileSet_otodk"]
 sources/0 = SubResource("TileSetAtlasSource_sloo2")
 
-[node name="Game" type="Node"]
-metadata/_edit_vertical_guides_ = [-429.0]
-
-[node name="World Boundary" type="Node" parent="."]
-
-[node name="StaticBody2D" type="StaticBody2D" parent="World Boundary"]
-position = Vector2(-889, 21)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World Boundary/StaticBody2D"]
-rotation = 1.57079
-shape = SubResource("WorldBoundaryShape2D_xc5n2")
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="World Boundary"]
-position = Vector2(45, -53)
-rotation = 3.14159
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World Boundary/StaticBody2D2"]
-rotation = 1.57079
-shape = SubResource("WorldBoundaryShape2D_xc5n2")
-
-[node name="Player" parent="." instance=ExtResource("1_4tiuk")]
-position = Vector2(-858, -40)
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-unique_name_in_owner = true
-process_mode = 3
-zoom = Vector2(3, 3)
-process_callback = 0
-limit_left = -890
-limit_right = 47
-limit_bottom = 96
-limit_smoothed = true
-position_smoothing_enabled = true
-position_smoothing_speed = 6.0
-drag_left_margin = 0.0
-drag_top_margin = 0.0
-drag_right_margin = 0.0
-drag_bottom_margin = 0.0
-editor_draw_limits = true
-editor_draw_drag_margin = true
-script = ExtResource("2_brk2f")
-
-[node name="Background" parent="." instance=ExtResource("7_b0qew")]
-
-[node name="Sprite2D" parent="Background/ParallaxLayer" index="0"]
-position = Vector2(10, 0)
-texture = ExtResource("8_1wpba")
-
-[node name="HUD" type="CanvasLayer" parent="."]
-
-[node name="FPS" parent="HUD" instance=ExtResource("9_qftqp")]
-theme_override_fonts/font = ExtResource("10_b0wis")
-
-[node name="Level" type="Label" parent="HUD"]
-offset_left = 1034.0
-offset_top = 6.0
-offset_right = 1146.0
-offset_bottom = 29.0
-theme_override_fonts/font = ExtResource("10_b0wis")
-text = "Level: 1"
-uppercase = true
+[node name="LevelArea" type="Node2D"]
+script = ExtResource("1_d47m4")
 
 [node name="Tilemaps" type="Node" parent="."]
 
 [node name="World" type="TileMap" parent="Tilemaps"]
-tile_set = SubResource("TileSet_d1udv")
+tile_set = SubResource("TileSet_c71jf")
 format = 2
 layer_0/name = "Ground"
-layer_0/tile_data = PackedInt32Array(65480, 393216, 0, 65481, 458752, 0, 65482, 458752, 0, 65483, 458752, 0, 65484, 458752, 0, 65485, 458752, 0, 65486, 458752, 0, 65487, 458752, 0, 65488, 524288, 0, 131024, 524288, 1, 131016, 393216, 1, 196552, 393216, 1, 131017, 458752, 1, 131018, 458752, 1, 131019, 458752, 1, 131020, 458752, 1, 131021, 458752, 1, 131022, 458752, 1, 131023, 458752, 1, 196556, 458752, 1, 196555, 458752, 1, 196554, 458752, 1, 196553, 458752, 1, 196557, 458752, 1, 196558, 458752, 1, 196559, 458752, 1, 196560, 458752, 1, 262088, 393216, 1, 327624, 393216, 1, 393160, 393216, 2, 262089, 458752, 1, 262093, 458752, 1, 262092, 458752, 1, 262091, 458752, 1, 262090, 458752, 1, 327628, 458752, 1, 327627, 458752, 1, 327626, 458752, 1, 327625, 458752, 1, 393162, 458752, 2, 393161, 458752, 2, 393163, 458752, 2, 393164, 458752, 2, 393165, 458752, 2, 393166, 458752, 2, 393167, 458752, 2, 393168, 458752, 2, 393169, 458752, 2, 327629, 458752, 1, 327630, 458752, 1, 327631, 458752, 1, 327632, 458752, 1, 262096, 458752, 1, 262094, 458752, 1, 262095, 458752, 1, 327633, 458752, 1, 327634, 458752, 1, 327635, 458752, 1, 327636, 458752, 1, 393172, 458752, 2, 393173, 458752, 2, 393171, 458752, 2, 393170, 458752, 2, 327637, 458752, 1, 262097, 458752, 1, 262098, 458752, 0, 196561, 524288, 0, 262099, 458752, 0, 262100, 458752, 0, 262101, 458752, 0, 262102, 458752, 0, 262103, 458752, 0, 262104, 458752, 0, 262105, 458752, 0, 262106, 458752, 0, 327638, 458752, 1, 327639, 458752, 1, 327640, 458752, 1, 327641, 458752, 1, 327642, 458752, 1, 327643, 458752, 1, 327644, 458752, 1, 262107, 458752, 0, 262108, 458752, 1, 262109, 458752, 1, 196573, 458752, 1, 196572, 393216, 1, 131036, 393216, 1, 65500, 393216, 0, 65501, 458752, 0, 65502, 458752, 0, 65503, 458752, 0, 65504, 458752, 0, 65505, 458752, 0, 65506, 524288, 0, 131037, 458752, 1, 131038, 458752, 1, 131039, 458752, 1, 131040, 458752, 1, 196576, 458752, 1, 196575, 458752, 1, 196574, 458752, 1, 196577, 458752, 1, 131041, 458752, 1, 131042, 458752, 1, 196578, 458752, 1, 262114, 458752, 1, 262113, 458752, 1, 262112, 458752, 1, 262111, 458752, 1, 262110, 458752, 1, 327645, 458752, 1, 327646, 458752, 1, 327647, 458752, 1, 327648, 458752, 1, 327649, 458752, 1, 393174, 458752, 2, 393175, 458752, 2, 393176, 458752, 2, 393177, 458752, 2, 393178, 458752, 2, 393179, 458752, 2, 393180, 458752, 2, 393181, 458752, 2, 393182, 458752, 2, 393183, 458752, 2, 393184, 458752, 2, 393185, 458752, 2, 393186, 458752, 2, 327650, 458752, 1, 131043, 458752, 0, 131044, 458752, 0, 131045, 458752, 0, 131046, 458752, 0, 131047, 458752, 0, 131048, 458752, 0, 131049, 458752, 0, 131050, 458752, 0, 131051, 458752, 0, 131052, 458752, 0, 131053, 458752, 0, 196581, 458752, 1, 196580, 458752, 1, 196579, 458752, 1, 196582, 458752, 1, 196583, 458752, 1, 196584, 458752, 1, 196585, 458752, 1, 196586, 458752, 1, 196587, 458752, 1, 196588, 458752, 1, 196589, 458752, 1, 262115, 458752, 1, 262116, 458752, 1, 262117, 458752, 1, 262118, 458752, 1, 262119, 458752, 1, 262120, 458752, 1, 262121, 458752, 1, 262122, 458752, 1, 262123, 458752, 1, 262124, 458752, 1, 262125, 458752, 1, 131054, 458752, 0, 131055, 458752, 0, 131056, 458752, 0, 131057, 458752, 0, 131058, 458752, 0, 131059, 458752, 0, 131060, 458752, 0, 131061, 458752, 0, 131062, 524288, 0, 196591, 458752, 1, 196590, 458752, 1, 196592, 458752, 1, 196593, 458752, 1, 196594, 458752, 1, 196595, 458752, 1, 196596, 458752, 1, 196597, 458752, 1, 196598, 524288, 1, 262130, 458752, 1, 262129, 458752, 1, 262128, 458752, 1, 262127, 458752, 1, 262126, 458752, 1, 262131, 458752, 1, 262132, 458752, 1, 262133, 458752, 1, 262134, 524288, 1, 327668, 458752, 1, 327667, 458752, 1, 327666, 458752, 1, 327665, 458752, 1, 327664, 458752, 1, 327663, 458752, 1, 327662, 458752, 1, 327661, 458752, 1, 327660, 458752, 1, 327659, 458752, 1, 327658, 458752, 1, 327657, 458752, 1, 327656, 458752, 1, 327655, 458752, 1, 327654, 458752, 1, 327653, 458752, 1, 327652, 458752, 1, 327651, 458752, 1, 393197, 458752, 2, 393198, 458752, 2, 393196, 458752, 2, 393195, 458752, 2, 393194, 458752, 2, 393193, 458752, 2, 393192, 458752, 2, 393191, 458752, 2, 393190, 458752, 2, 393189, 458752, 2, 393188, 458752, 2, 393187, 458752, 2, 393199, 458752, 2, 393200, 458752, 2, 393201, 458752, 2, 393202, 458752, 2, 393203, 458752, 2, 393204, 458752, 2, 393205, 458752, 2, 327669, 458752, 1, 327670, 458752, 1, 393206, 458752, 2, 327672, 458752, 0, 327671, 458752, 0, 393208, 458752, 2, 196605, 393216, 1, 196606, 458752, 1, 131069, 393216, 1, 131070, 458752, 1, 262142, 458752, 1, 262141, 393216, 1, 393207, 458752, 2, 327678, 458752, 1, 327677, 458752, 1, 327676, 458752, 0, 393212, 458752, 2, 393213, 458752, 2, 393214, 458752, 2, 131071, 458752, 1, 65536, 458752, 1, 65537, 458752, 1, 65538, 524288, 1, 131074, 524288, 1, 196610, 524288, 1, 196609, 458752, 1, 196608, 458752, 1, 262143, 458752, 1, 196607, 458752, 1, 131072, 458752, 1, 131073, 458752, 1, 262145, 458752, 1, 262144, 458752, 1, 327679, 458752, 1, 262146, 524288, 1, 327680, 458752, 2, 393215, 458752, 2, 327681, 458752, 2, 327682, 524288, 2, 393209, 458752, 2, 393210, 458752, 2, 393211, 458752, 2, 327673, 458752, 0, 327674, 458752, 0, 327675, 458752, 0, -3, 393216, 0, 65533, 393216, 1, -2, 458752, 0, -1, 458752, 0, -65536, 458752, 0, -65535, 458752, 0, 1, 458752, 1, 2, 524288, 1, -65534, 524288, 0, 65534, 458752, 1, 65535, 458752, 1, 0, 458752, 1, -393241, 0, 0, -327705, 0, 1, -262169, 0, 2, -393240, 65536, 0, -327704, 65536, 1, -262168, 65536, 2, -393239, 65536, 0, -327703, 65536, 1, -262167, 65536, 2, -393238, 65536, 0, -327702, 65536, 1, -262166, 65536, 2, -393237, 65536, 0, -327701, 65536, 1, -262165, 65536, 2, -393236, 65536, 0, -327700, 65536, 1, -262164, 65536, 2, -393235, 65536, 0, -327699, 65536, 1, -262163, 65536, 2, -393234, 65536, 0, -327698, 65536, 1, -262162, 65536, 2, -393233, 65536, 0, -327697, 65536, 1, -262161, 65536, 2, -393232, 65536, 0, -327696, 65536, 1, -262160, 65536, 2, -393231, 65536, 0, -327695, 65536, 1, -262159, 65536, 2, -393230, 65536, 0, -327694, 65536, 1, -262158, 65536, 2, -393229, 65536, 0, -327693, 65536, 1, -262157, 65536, 2, -393228, 65536, 0, -327692, 65536, 1, -262156, 65536, 2, -393227, 65536, 0, -327691, 65536, 1, -262155, 65536, 2, -393226, 131072, 0, -327690, 131072, 1, -262154, 131072, 2)
 layer_1/name = "Ground 2"
-layer_1/tile_data = PackedInt32Array(196562, 524288, 0, 196561, 458752, 0, 196560, 458752, 0, 196559, 393216, 0, 262099, 458752, 0, 262100, 458752, 0, 262101, 458752, 0, 262102, 458752, 0, 262103, 458752, 0, 262104, 458752, 0, 262105, 458752, 0, 262106, 458752, 0, 262107, 524288, 0, 327643, 524288, 1, 393179, 524288, 2, 393178, 458752, 2, 393177, 458752, 2, 393176, 458752, 2, 393175, 458752, 2, 393174, 458752, 2, 393173, 458752, 2, 393172, 458752, 2, 393171, 458752, 2, 327635, 458752, 1, 327636, 458752, 1, 327637, 458752, 1, 327638, 458752, 1, 327639, 458752, 1, 327640, 458752, 1, 327641, 458752, 1, 327642, 458752, 1, 262098, 458752, 0, 327634, 458752, 1, 393170, 458752, 2, 327633, 458752, 1, 393169, 458752, 2, 196554, 589824, 0, 262090, 589824, 1, 196555, 655360, 0, 262091, 655360, 1, 262117, 589824, 0, 327653, 589824, 1, 262118, 655360, 0, 327654, 655360, 1, 196574, 786432, 5, 327668, 786432, 5, 65536, 786432, 5, 196607, 1114112, 8, 131072, 1179648, 8, 131073, 1245184, 8)
+layer_1/tile_data = PackedInt32Array()
 
 [node name="Collectables" type="TileMap" parent="Tilemaps"]
-tile_set = SubResource("TileSet_02j1c")
+tile_set = SubResource("TileSet_jfv8n")
 format = 2
-layer_0/tile_data = PackedInt32Array(-11, 11, 0, -10, 16, 0, -9, 15, 0, -65557, 13, 0, -65556, 13, 0, -131093, 13, 0, -65555, 13, 0)
-script = ExtResource("15_5qdxc")
-fruit_scene = ExtResource("16_jp5d7")
-
-[node name="Checkpoints" type="TileMap" parent="Tilemaps"]
-tile_set = SubResource("TileSet_62ckl")
-format = 2
-layer_0/tile_data = PackedInt32Array(-131074, 2, 0, -65568, 1, 0, -65587, 0, 0)
-script = SubResource("GDScript_wxpiq")
+script = ExtResource("10_b0v2j")
+fruit_scene = ExtResource("11_ynr8h")
 
 [node name="Traps" type="TileMap" parent="Tilemaps"]
-tile_set = SubResource("TileSet_aplnt")
+tile_set = SubResource("TileSet_otodk")
 format = 2
-layer_0/tile_data = PackedInt32Array(262135, 0, 0, 262136, 0, 0, 262137, 0, 0, 262138, 0, 0, 262139, 0, 0, 262140, 0, 0, -327706, 0, 196608, -262170, 0, 196608, -327689, 0, 262144, -262153, 0, 262144, -393242, 0, 196608, -393225, 0, 262144, 131025, 0, 0, 131026, 0, 0, 196563, 0, 0, 196564, 0, 0, 196565, 0, 0, 196566, 0, 0, 196567, 0, 0, 196568, 0, 0, 196569, 0, 0, 196570, 0, 0, 196571, 0, 0, 65523, 0, 0, 65524, 0, 0, 65511, 0, 0, 65512, 0, 0, -196629, 0, 327680, -196628, 0, 327680, -196627, 0, 327680, -196626, 0, 327680, -196625, 0, 327680, -196624, 0, 327680, -196623, 0, 327680, -196633, 0, 327680, -196632, 0, 327680, -196631, 0, 327680, -196630, 0, 327680, -196622, 0, 327680, -196621, 0, 327680, -196620, 0, 327680, -196619, 0, 327680, -196618, 0, 327680)
-script = ExtResource("10_sqcig")
-SPIKE_SCENE = ExtResource("22_cktjg")
+script = ExtResource("13_csqpv")
+SPIKE_SCENE = ExtResource("14_60387")
 
-[editable path="Background"]
+[node name="Checkpoins" type="Node" parent="."]
+
+[node name="ExtendedCamera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+editor_draw_limits = true
+script = ExtResource("15_r0nyw")

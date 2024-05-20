@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bfd31ir0ye02l"]
+[gd_scene load_steps=36 format=3 uid="uid://bfd31ir0ye02l"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_71nf4"]
 [ext_resource type="Texture2D" uid="uid://ca8xa1hi4pwnn" path="res://player/assets/Pink Man/Idle (32x32).png" id="2_u300a"]
@@ -21,6 +21,7 @@
 [ext_resource type="Script" path="res://player/states/Jump.gd" id="17_bvybm"]
 [ext_resource type="Script" path="res://player/states/disappearing.gd" id="18_eork2"]
 [ext_resource type="Script" path="res://player/states/double_jump.gd" id="20_w18mn"]
+[ext_resource type="Script" path="res://player/states/disabled.gd" id="22_jfmub"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f0qax"]
 size = Vector2(14, 20)
@@ -40,7 +41,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("10_8i6mg")]
+"values": [ExtResource("2_u300a")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -53,6 +54,30 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:hframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
 }
 
 [sub_resource type="Animation" id="Animation_gmcun"]
@@ -93,11 +118,24 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 5]
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_7hsme"]
 resource_name = "disappearing"
+length = 0.35
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -134,6 +172,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.35),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_ytcud"]
@@ -402,11 +452,10 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_l4siu"]
 radius = 0.5
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("state_machine", "player_movement", "jump_state", "died_state", "appearing_state", "disappearing_state", "double_jump_state")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("state_machine", "player_movement", "jump_state", "died_state", "appearing_state", "disappearing_state", "double_jump_state", "disabled_state")]
 z_index = 10
 collision_layer = 2
 script = ExtResource("1_71nf4")
-movement_speed = 200.0
 state_machine = NodePath("StateMachine")
 player_movement = NodePath("PlayerMovement")
 jump_state = NodePath("StateMachine/Jump")
@@ -414,9 +463,10 @@ died_state = NodePath("StateMachine/Died")
 appearing_state = NodePath("StateMachine/Appearing")
 disappearing_state = NodePath("StateMachine/Disappearing")
 double_jump_state = NodePath("StateMachine/DoubleJump")
+disabled_state = NodePath("StateMachine/Disabled")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("10_8i6mg")
+texture = ExtResource("2_u300a")
 hframes = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -503,7 +553,6 @@ script = ExtResource("14_h62lb")
 jump_state = NodePath("../Jump")
 fall_state = NodePath("../Fall")
 run_state = NodePath("../Run")
-can_move = false
 
 [node name="Run" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "run_particles", "run_partciles_timer")]
 script = ExtResource("15_8tib6")
@@ -535,6 +584,9 @@ script = ExtResource("20_w18mn")
 fall_state = NodePath("../Fall")
 jump_particles = NodePath("../../JumpParticles")
 jump_sound = NodePath("../../Sounds/Jump")
+
+[node name="Disabled" type="Node" parent="StateMachine"]
+script = ExtResource("22_jfmub")
 
 [node name="Label" type="Label" parent="."]
 offset_left = -12.0

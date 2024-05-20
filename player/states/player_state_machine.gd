@@ -8,7 +8,7 @@ class_name PlayerStateMachine;
 
 # TODO: Bring move_and_slide here?
 
-func ready() -> void:
+func _machine_ready() -> void:
     for state in get_children():
         if state is PlayerState:
             state.parent = parent;

@@ -1,6 +1,6 @@
 extends Camera2D
 
-class_name MainCamera;
+class_name ExtendedCamera2D;
 
 @export var random_shake: float = 20;
 @export var shake_fade: float = 10;

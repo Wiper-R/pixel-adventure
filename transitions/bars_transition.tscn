@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cml7m1shuww4o"]
 
-[ext_resource type="Script" path="res://transitions/scene_transition.gd" id="1_bxbx3"]
+[ext_resource type="Script" path="res://transitions/transition_animation.gd" id="1_xwqqw"]
 
 [sub_resource type="Animation" id="Animation_7lav6"]
 length = 0.001
@@ -199,7 +199,7 @@ _data = {
 }
 
 [node name="BarsTransition" type="CanvasLayer" node_paths=PackedStringArray("animation_player")]
-script = ExtResource("1_bxbx3")
+script = ExtResource("1_xwqqw")
 animation_player = NodePath("AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

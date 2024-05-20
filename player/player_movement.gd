@@ -2,6 +2,7 @@ extends Node
 class_name PlayerMovement;
 
 var direction = 0;
+@export var movement_speed: float = 250.0;
 
 @export_group("Jump")
 @export var jump_force: float = -400;

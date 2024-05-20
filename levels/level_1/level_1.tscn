@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://5nnsy8sv7nj0"]
+
+[ext_resource type="PackedScene" uid="uid://cedkysf45cf60" path="res://levels/base_level.tscn" id="1_j1l4e"]
+[ext_resource type="Texture2D" uid="uid://bjtiu6x2a8w78" path="res://assets/sprites/Background/Pink.png" id="2_6cpxv"]
+[ext_resource type="PackedScene" uid="uid://b1f3wfefkliy8" path="res://levels/level_1/areas/area1.tscn" id="2_feku3"]
+
+[node name="Level" instance=ExtResource("1_j1l4e")]
+
+[node name="Background" parent="." index="0"]
+speed = 200
+
+[node name="Sprite2D" parent="Background/ParallaxLayer" index="0"]
+texture = ExtResource("2_6cpxv")
+
+[node name="Player" parent="." index="2"]
+position = Vector2(68, 74)
+
+[node name="LevelArea" parent="." index="3" instance=ExtResource("2_feku3")]
+
+[editable path="Background"]

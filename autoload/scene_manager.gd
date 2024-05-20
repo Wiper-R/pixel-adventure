@@ -1,5 +1,7 @@
 extends Node2D
-@onready var transition: SceneTransition = $BarsTransition
+
+
+@onready var transition: TransitionAnimation = $BarsTransition
 
 func change_scene(scene: PackedScene) -> void:
     await transition._transition_in()
@@ -14,4 +16,7 @@ func reload_scene() -> void:
     get_tree().paused = false;
 
 func _ready() -> void:
+    # TODO: Use different logic to stop player animation
+    get_tree().paused = true
     await transition._transition_out()
+    get_tree().paused = false
