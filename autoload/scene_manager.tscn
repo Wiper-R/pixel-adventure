@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bf0om3b8t8fev"]
+[gd_scene load_steps=4 format=3 uid="uid://bf0om3b8t8fev"]
 
 [ext_resource type="Script" path="res://autoload/scene_manager.gd" id="1_r4rvk"]
 [ext_resource type="PackedScene" uid="uid://cml7m1shuww4o" path="res://transitions/bars_transition.tscn" id="2_yrlfh"]
+[ext_resource type="PackedScene" uid="uid://pqigmal8g4pa" path="res://transitions/fade_transition.tscn" id="3_u7kwo"]
 
 [node name="SceneManager" type="Node2D"]
 process_mode = 3
@@ -11,3 +12,5 @@ script = ExtResource("1_r4rvk")
 
 [node name="BarsTransition" parent="." instance=ExtResource("2_yrlfh")]
 layer = 128
+
+[node name="FadeTransition" parent="." instance=ExtResource("3_u7kwo")]

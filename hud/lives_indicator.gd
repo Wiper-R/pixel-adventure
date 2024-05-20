@@ -19,6 +19,8 @@ func _update_hearts(lives: int) -> void:
 
 func _init() -> void:
     Events.PLAYER_LIVES_UPDATED.connect(_update_hearts)
-    _update_hearts(GameManager.lives)
+    
+func _ready() -> void:
+    _update_hearts(GameManager.player.lives)
     
         

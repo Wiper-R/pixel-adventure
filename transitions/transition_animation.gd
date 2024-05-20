@@ -13,6 +13,3 @@ func _transition_out():
     animation_player.play(transition_out)
     return animation_player.animation_finished
 
-
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-    print(anim_name)

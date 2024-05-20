@@ -4,6 +4,8 @@ extends StaticBody2D
 @onready var confetti: Node2D = $Confetti
 @onready var interactable_component: Area2D = $InteractableComponent
 
+@export var next_level: PackedScene = null;
+
 
 func _player_entered():
     Events.PLAYER_TOUCHED_CUP.emit()

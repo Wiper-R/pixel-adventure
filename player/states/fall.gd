@@ -24,7 +24,5 @@ func state_physics_process(delta: float):
         next_state = idle_state
 
 func state_input(event: InputEvent) -> void:
-    print("Input")
     if event.is_action_pressed("jump") and not jump_handled:
-        print("Double Jump")
         parent._handle_double_jump()

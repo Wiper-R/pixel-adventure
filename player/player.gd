@@ -13,16 +13,27 @@ class_name Player
 
 @onready var animation_player = $AnimationPlayer
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
 
 var died: bool = false;
-var gravity = ProjectSettings.get("physics/2d/default_gravity")
+var gravity = ProjectSettings.get("physics/2d/default_gravity");
+
+var lives = 3 : 
+    set(value):
+        lives = value;
+        Events.PLAYER_LIVES_UPDATED.emit(lives);
 
 # TODO: Handle dying properly
 
 func _init() -> void:
     Events.PLAYER_TOUCHED_CHECKPOINT.connect(_touched_checkpoint)
-
+    GameManager.player = self
+    
+func rebirth() -> void:
+    sprite.rotation = 0;
+    collision_shape.set_deferred("disabled", false)
+    died = false
 
 func _ready():
     #Engine.time_scale = .2;
@@ -95,17 +106,8 @@ func _died():
     get_node("CollisionShape2D").set_deferred("disabled", true)
     await get_tree().create_timer(1).timeout
     tween.kill()
-    
-    #if Checkpoint.last_checkpoint:
-        #died = false;
-        #position = Checkpoint.last_checkpoint.position;
-        #get_node("CollisionShape2D").set_deferred("disabled", false)
-        #sprite.rotation = 0
-        #state_machine.switch_state(appearing_state)
-    #else:
-        #SceneManager.reload_scene()
-    SceneManager.reload_scene()
-    
+    GameManager.handle_player_death()
+
     
     
 func _update_timers() -> void:
@@ -134,7 +136,7 @@ func _handle_double_jump() -> bool:
 
 func _reached_cup() -> void:
     state_machine.switch_state(disappearing_state)
-
+    lives = 3;
 
 #region Event Handlers
 func _touched_checkpoint(checkpoint: Checkpoint):
