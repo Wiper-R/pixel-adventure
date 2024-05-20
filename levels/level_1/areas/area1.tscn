@@ -5,8 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c0wr2jusmktl4" path="res://checkpoints/checkpoint/checkpoint.tscn" id="3_a1qsw"]
 [ext_resource type="PackedScene" uid="uid://c0jq2rcdqhhav" path="res://levels/level_1/areas/area2.tscn" id="4_krklw"]
 
-[node name="LevelArea" node_paths=PackedStringArray("player_spawn") instance=ExtResource("1_qppqk")]
-player_spawn = NodePath("Checkpoins/Start/PlayerSpawn")
+[node name="LevelArea" instance=ExtResource("1_qppqk")]
 
 [node name="World" parent="Tilemaps" index="0"]
 layer_0/tile_data = PackedInt32Array(458740, 131072, 1, 393204, 131072, 1, 327668, 131072, 1, 262132, 131072, 1, 196596, 131072, 1, 131060, 131072, 1, 65524, 131072, 1, -12, 131072, 1, -65548, 131072, 1, -196620, 131072, 1, -131084, 131072, 1, -262156, 131072, 1, -327692, 131072, 1, -393228, 65536, 2, -393227, 65536, 2, -393226, 65536, 2, -393225, 65536, 2, -393224, 65536, 2, -393223, 65536, 2, -393222, 65536, 2, -393221, 65536, 2, -393220, 65536, 2, -393219, 65536, 2, -393218, 65536, 2, -393217, 65536, 2, -458747, 65536, 2, -458752, 65536, 2, -458751, 65536, 2, -458750, 65536, 2, -458749, 65536, 2, -458748, 65536, 2, -458746, 65536, 2, -458745, 65536, 2, -458744, 65536, 2, -458743, 65536, 2, -458742, 65536, 2, -458741, 0, 1, -393205, 0, 1, -327669, 0, 1, -262133, 0, 1, -196597, 0, 1, -131061, 0, 1, -65525, 0, 1, 11, 0, 1, 65547, 0, 1, 131083, 0, 1, 196619, 0, 1, 262155, 0, 1, 327691, 0, 1, 393227, 0, 1, 458741, 65536, 0, 458742, 65536, 0, 458743, 65536, 0, 458744, 65536, 0, 458745, 65536, 0, 458746, 65536, 0, 458747, 65536, 0, 458748, 65536, 0, 458749, 65536, 0, 458750, 65536, 0, 393216, 65536, 0, 393217, 65536, 0, 393218, 65536, 0, 393219, 65536, 0, 393220, 65536, 0, 458751, 65536, 0, 393221, 65536, 0, 393222, 65536, 0, 393223, 65536, 0, 393224, 65536, 0, 393225, 65536, 0, 393226, 65536, 0)
@@ -15,7 +14,7 @@ layer_0/tile_data = PackedInt32Array(458740, 131072, 1, 393204, 131072, 1, 32766
 layer_0/tile_data = PackedInt32Array(393214, 0, 0, 393215, 0, 0, 327680, 0, 0)
 
 [node name="Start" parent="Checkpoins" index="0" instance=ExtResource("2_rdr58")]
-position = Vector2(-139, 64)
+position = Vector2(-134, 64)
 
 [node name="Checkpoint" parent="Checkpoins" index="1" instance=ExtResource("3_a1qsw")]
 position = Vector2(139, 64)

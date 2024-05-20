@@ -2,7 +2,7 @@ extends PlayerState;
 class_name PlayerFallState;
 
 var gravity = ProjectSettings.get("physics/2d/default_gravity")
-var jump_handled: bool = true;
+var jump_handled: bool = false;
 
 @export var gravity_multiplier: float = 1;
 @export var fall_multiplier: float = 2.5;
@@ -14,7 +14,7 @@ var jump_handled: bool = true;
 
 func on_enter() -> void:
     animation_player.play("fall")
-    
+
 func state_physics_process(delta: float):
     parent._handle_movement()
     jump_handled = parent._handle_jump()
@@ -24,5 +24,7 @@ func state_physics_process(delta: float):
         next_state = idle_state
 
 func state_input(event: InputEvent) -> void:
+    print("Input")
     if event.is_action_pressed("jump") and not jump_handled:
+        print("Double Jump")
         parent._handle_double_jump()

@@ -2,6 +2,7 @@ extends PlayerState;
 class_name PlayerRunState;
 
 @export var idle_state: PlayerIdleState;
+@export var fall_state: PlayerFallState;
 @export var run_particles: CPUParticles2D;
 @export var run_partciles_timer: Timer;
 
@@ -22,6 +23,9 @@ func state_physics_process(delta: float):
     
     if parent.velocity.x == 0:
         next_state = idle_state
+        
+    if not parent.is_on_floor():
+        next_state = fall_state;
 
 
 

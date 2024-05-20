@@ -1,9 +1,10 @@
-[gd_scene load_steps=26 format=3 uid="uid://d10wtsht3ok2b"]
+[gd_scene load_steps=27 format=3 uid="uid://d10wtsht3ok2b"]
 
 [ext_resource type="Script" path="res://checkpoints/start/start.gd" id="1_mih7i"]
 [ext_resource type="Texture2D" uid="uid://b7l84wafgcs1j" path="res://assets/sprites/Items/Checkpoints/Start/Start (Idle).png" id="2_1fb4i"]
 [ext_resource type="Texture2D" uid="uid://cfeqpbubh3qc2" path="res://assets/sprites/Items/Checkpoints/Start/Start (Moving) (64x64).png" id="3_c1wpu"]
 [ext_resource type="PackedScene" uid="uid://cym3g82lmtq5i" path="res://common/interactable/interactable_component.tscn" id="3_k1847"]
+[ext_resource type="PackedScene" uid="uid://cug234s81stn0" path="res://common/player_spawn.tscn" id="5_0qvn3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p2ntd"]
 atlas = ExtResource("2_1fb4i")
@@ -170,7 +171,7 @@ shape = SubResource("RectangleShape2D_g4u14")
 position = Vector2(11, 28)
 shape = SubResource("RectangleShape2D_iic4e")
 
-[node name="PlayerSpawn" type="Marker2D" parent="."]
+[node name="PlayerSpawn" parent="." instance=ExtResource("5_0qvn3")]
 position = Vector2(11, -43)
 
 [connection signal="player_entered" from="InteractableComponent" to="." method="_player_interacted"]

@@ -553,10 +553,12 @@ script = ExtResource("14_h62lb")
 jump_state = NodePath("../Jump")
 fall_state = NodePath("../Fall")
 run_state = NodePath("../Run")
+can_move = false
 
-[node name="Run" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "run_particles", "run_partciles_timer")]
+[node name="Run" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "fall_state", "run_particles", "run_partciles_timer")]
 script = ExtResource("15_8tib6")
 idle_state = NodePath("../Idle")
+fall_state = NodePath("../Fall")
 run_particles = NodePath("../../RunParticles")
 run_partciles_timer = NodePath("../../RunParticles/Timer")
 
