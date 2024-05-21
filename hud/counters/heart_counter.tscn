@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbo0heyuxq6nq"]
+
+[ext_resource type="PackedScene" uid="uid://ckfw10pjj03an" path="res://hud/counter.tscn" id="1_65tyn"]
+[ext_resource type="Texture2D" uid="uid://ct2gsn4gs01hd" path="res://hud/sprites/heart.png" id="2_5du0q"]
+[ext_resource type="Script" path="res://hud/counters/heart_counter.gd" id="2_ukxcx"]
+
+[node name="HeartCounter" instance=ExtResource("1_65tyn")]
+offset_right = -444.0
+script = ExtResource("2_ukxcx")
+
+[node name="TextureRect" parent="." index="0"]
+offset_left = -8.0
+offset_top = -46.0
+offset_right = 55.0
+offset_bottom = 51.0
+texture = ExtResource("2_5du0q")
+
+[node name="Label" parent="." index="1"]
+text = "x3
+"

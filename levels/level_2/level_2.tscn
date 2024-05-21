@@ -9,9 +9,6 @@
 [node name="Sprite2D" parent="Background/ParallaxLayer" index="0"]
 texture = ExtResource("2_s6wui")
 
-[node name="Level" parent="HUD/VBoxContainer" index="0"]
-text = "Level: 2"
-
 [node name="Player" parent="." index="2"]
 position = Vector2(-135, -129)
 

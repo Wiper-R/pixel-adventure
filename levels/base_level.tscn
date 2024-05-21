@@ -1,11 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cedkysf45cf60"]
+[gd_scene load_steps=5 format=3 uid="uid://cedkysf45cf60"]
 
 [ext_resource type="PackedScene" uid="uid://bfd31ir0ye02l" path="res://player/player.tscn" id="1_7pl5u"]
 [ext_resource type="Script" path="res://levels/level.gd" id="1_kwu8e"]
-[ext_resource type="Script" path="res://hud/hud.gd" id="3_hf57o"]
+[ext_resource type="PackedScene" uid="uid://brv16b7f72gkl" path="res://hud/hud.tscn" id="3_47x60"]
 [ext_resource type="PackedScene" uid="uid://c2brs50wbj7w" path="res://background/background.tscn" id="3_n2ptk"]
-[ext_resource type="FontFile" uid="uid://jjq1v4lskugd" path="res://assets/sprites/Menu/Text/Text (White) (8x10).png" id="6_hwguh"]
-[ext_resource type="Script" path="res://hud/lives_indicator.gd" id="6_ynlcu"]
 
 [node name="BaseLevel" type="Node" node_paths=PackedStringArray("player")]
 script = ExtResource("1_kwu8e")
@@ -14,33 +12,6 @@ metadata/_edit_vertical_guides_ = [-429.0]
 
 [node name="Background" parent="." instance=ExtResource("3_n2ptk")]
 
-[node name="HUD" type="CanvasLayer" parent="."]
-script = ExtResource("3_hf57o")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -306.0
-offset_top = 50.0
-offset_right = -60.0
-offset_bottom = 145.0
-grow_horizontal = 0
-theme_override_constants/separation = 10
-
-[node name="Level" type="Label" parent="HUD/VBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("6_hwguh")
-text = "Level: 1"
-horizontal_alignment = 2
-vertical_alignment = 1
-uppercase = true
-
-[node name="LivesIndicator" type="HFlowContainer" parent="HUD/VBoxContainer"]
-clip_contents = true
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-alignment = 2
-script = ExtResource("6_ynlcu")
+[node name="HUD" parent="." instance=ExtResource("3_47x60")]
 
 [node name="Player" parent="." instance=ExtResource("1_7pl5u")]

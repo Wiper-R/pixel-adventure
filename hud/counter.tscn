@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=3 uid="uid://ckfw10pjj03an"]
+
+[ext_resource type="Texture2D" uid="uid://dn2dclmgu6si5" path="res://assets/ui-rect.png" id="1_dnmce"]
+[ext_resource type="Texture2D" uid="uid://wct33xsrlmem" path="res://assets/sprites/Items/Checkpoints/Checkpoint/Checkpoint (Flag Idle)(64x64).png" id="2_6u33o"]
+[ext_resource type="Theme" uid="uid://b3fcustk3ewpg" path="res://hud/theme/default_theme.tres" id="3_yrb3w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wojvs"]
+atlas = ExtResource("2_6u33o")
+region = Rect2(595.647, 18.2431, 29.5936, 45.9444)
+
+[node name="Counter" type="NinePatchRect"]
+self_modulate = Color(0.151276, 0.151276, 0.151276, 1)
+texture_filter = 6
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -553.0
+offset_top = -288.0
+offset_right = -428.0
+offset_bottom = -238.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_dnmce")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 14
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -47.5
+offset_right = 47.0
+offset_bottom = 24.5
+grow_vertical = 2
+texture = SubResource("AtlasTexture_wojvs")
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 6
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -25.0
+offset_right = -16.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("3_yrb3w")
+text = "0/4"
+horizontal_alignment = 2

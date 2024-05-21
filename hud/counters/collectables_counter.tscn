@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://b44j5b8cokmde"]
+
+[ext_resource type="PackedScene" uid="uid://ckfw10pjj03an" path="res://hud/counter.tscn" id="1_ps1fj"]
+[ext_resource type="Texture2D" uid="uid://duktbpw21f4b6" path="res://fruits/sprites/Cherries.png" id="2_a5c2f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvw7h"]
+atlas = ExtResource("2_a5c2f")
+region = Rect2(0, 0, 32, 32)
+
+[node name="CollectablesCounter" instance=ExtResource("1_ps1fj")]
+
+[node name="TextureRect" parent="." index="0"]
+offset_left = -25.0
+offset_top = -66.0
+offset_right = 84.0
+offset_bottom = 101.0
+texture = SubResource("AtlasTexture_vvw7h")
+
+[node name="Label" parent="." index="1"]
+text = "50"

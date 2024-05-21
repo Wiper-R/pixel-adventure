@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://brv16b7f72gkl"]
+
+[ext_resource type="Script" path="res://hud/hud.gd" id="1_xpm3i"]
+[ext_resource type="PackedScene" uid="uid://cds3lqfws0221" path="res://hud/counters/checkpoint_counter.tscn" id="2_b4yxx"]
+[ext_resource type="PackedScene" uid="uid://b44j5b8cokmde" path="res://hud/counters/collectables_counter.tscn" id="3_bx563"]
+[ext_resource type="PackedScene" uid="uid://bbo0heyuxq6nq" path="res://hud/counters/heart_counter.tscn" id="3_sbsrl"]
+[ext_resource type="PackedScene" uid="uid://drvstxmdu16qd" path="res://hud/counters/level_counter.tscn" id="4_1y58t"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_xpm3i")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 80.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 20
+
+[node name="Control" type="Control" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBox-Left" type="HBoxContainer" parent="MarginContainer/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HeartCounter" parent="MarginContainer/Control/HBox-Left" instance=ExtResource("3_sbsrl")]
+custom_minimum_size = Vector2(112, 54)
+layout_mode = 2
+
+[node name="CollectablesCounter" parent="MarginContainer/Control/HBox-Left" instance=ExtResource("3_bx563")]
+custom_minimum_size = Vector2(118, 52)
+layout_mode = 2
+
+[node name="HBox-Right" type="HBoxContainer" parent="MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="CheckpointCounter" parent="MarginContainer/Control/HBox-Right" instance=ExtResource("2_b4yxx")]
+custom_minimum_size = Vector2(124, 54)
+layout_mode = 2
+
+[node name="LevelCounter" parent="MarginContainer/Control/HBox-Right" instance=ExtResource("4_1y58t")]
+custom_minimum_size = Vector2(112, 54)
+layout_mode = 2

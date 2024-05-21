@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cds3lqfws0221"]
+
+[ext_resource type="PackedScene" uid="uid://ckfw10pjj03an" path="res://hud/counter.tscn" id="1_pr1is"]
+
+[node name="CheckpointCounter" instance=ExtResource("1_pr1is")]
