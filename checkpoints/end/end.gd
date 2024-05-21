@@ -8,7 +8,7 @@ extends StaticBody2D
 
 
 func _player_entered():
-    Events.PLAYER_TOUCHED_CUP.emit()
+    Events.PLAYER_TOUCHED_CUP.emit(next_level)
     animation_player.play("pressed")
     confetti.emit_signal('confetti')
     await animation_player.animation_finished

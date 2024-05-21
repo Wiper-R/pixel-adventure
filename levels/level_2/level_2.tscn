@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2cqboicfkm3i"]
+
+[ext_resource type="PackedScene" uid="uid://cedkysf45cf60" path="res://levels/base_level.tscn" id="1_rjwg3"]
+[ext_resource type="PackedScene" uid="uid://b31qmdqoksgcv" path="res://levels/level_2/areas/area1.tscn" id="2_3sce5"]
+[ext_resource type="Texture2D" uid="uid://b83eihskbrt5y" path="res://assets/sprites/Background/Purple.png" id="2_s6wui"]
+
+[node name="Level2" instance=ExtResource("1_rjwg3")]
+
+[node name="Sprite2D" parent="Background/ParallaxLayer" index="0"]
+texture = ExtResource("2_s6wui")
+
+[node name="Level" parent="HUD/VBoxContainer" index="0"]
+text = "Level: 2"
+
+[node name="Player" parent="." index="2"]
+position = Vector2(-135, -129)
+
+[node name="LevelArea" parent="." index="3" instance=ExtResource("2_3sce5")]
+
+[editable path="Background"]

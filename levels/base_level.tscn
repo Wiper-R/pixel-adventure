@@ -13,7 +13,6 @@ player = NodePath("Player")
 metadata/_edit_vertical_guides_ = [-429.0]
 
 [node name="Background" parent="." instance=ExtResource("3_n2ptk")]
-visible = false
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("3_hf57o")

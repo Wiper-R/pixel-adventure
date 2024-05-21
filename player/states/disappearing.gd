@@ -11,5 +11,4 @@ func on_enter() -> void:
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
     if anim_name == "disappearing":
-        # TODO: Remove this from here
-        SceneManager.reload_scene()
+        Events.PLAYER_FINISHED_DISAPPEARING.emit()

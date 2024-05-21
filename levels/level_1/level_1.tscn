@@ -13,7 +13,7 @@ speed = 200
 texture = ExtResource("2_6cpxv")
 
 [node name="Player" parent="." index="2"]
-position = Vector2(68, 74)
+position = Vector2(-166, -144)
 
 [node name="LevelArea" parent="." index="3" instance=ExtResource("2_feku3")]
 

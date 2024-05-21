@@ -16,7 +16,7 @@ func get_transition(transition: Transition) -> TransitionAnimation:
         
     return null;
 
-func change_scene(scene: PackedScene, transition: Transition = Transition.BARS) -> void:
+func change_scene(scene: PackedScene, transition: Transition = Transition.FADE) -> void:
     var _transition = get_transition(transition)
     if _transition:
         await _transition._transition_in()
@@ -35,6 +35,7 @@ func reload_scene(transition: Transition = Transition.BARS) -> void:
     get_tree().paused = false;
 
 func _ready() -> void:
+    return;
     # TODO: Use different logic to stop player animation
     get_tree().paused = true
     await bars_transition._transition_out()

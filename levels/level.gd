@@ -7,6 +7,7 @@ var current_area: LevelArea = null;
 const FADE_TRANSITION = preload("res://transitions/fade_transition.tscn")
 
 func _enter_tree() -> void:
+    #get_window().content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
     Events.RESET_PLAYER_POSITION.connect(_reset_player_position)
 
 func _ready() -> void:
@@ -41,4 +42,3 @@ func _load_next_area(next_area_scene: PackedScene) -> void:
 #region Event Handlers   
 func _reset_player_position() -> void:
     player.global_position = get_tree().get_first_node_in_group(Groups.PLAYER_SPAWN_POSITION).global_position;
-

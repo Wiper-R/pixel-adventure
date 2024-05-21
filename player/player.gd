@@ -26,6 +26,9 @@ var lives = 3 :
 
 # TODO: Handle dying properly
 
+func can_die():
+    return not died and state_machine.current_state.can_die;
+
 func _init() -> void:
     Events.PLAYER_TOUCHED_CHECKPOINT.connect(_touched_checkpoint)
     GameManager.player = self
@@ -94,7 +97,7 @@ func _handle_animation():
         sprite.flip_h = false
 
 func _died():
-    if died:
+    if died or not state_machine.current_state.can_die:
         return
     died = true
     # TODO: This is part of die state
@@ -134,9 +137,8 @@ func _handle_double_jump() -> bool:
     state_machine.switch_state(double_jump_state)
     return true;
 
-func _reached_cup() -> void:
+func _reached_cup(next_level_scene: PackedScene) -> void:
     state_machine.switch_state(disappearing_state)
-    lives = 3;
 
 #region Event Handlers
 func _touched_checkpoint(checkpoint: Checkpoint):
