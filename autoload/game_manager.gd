@@ -1,6 +1,7 @@
 extends Node
 
 var player: Player = null;
+var level: int = 1;
 
 func _ready():
     Events.PLAYER_DIED.connect(_on_player_died)

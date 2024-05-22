@@ -3,8 +3,11 @@ class_name Level;
 
 
 @export var player: Player;
+@export var areas: Array[PackedScene];
+var area: int = 0;
 var current_area: LevelArea = null;
 const FADE_TRANSITION = preload("res://transitions/fade_transition.tscn")
+
 
 func _enter_tree() -> void:
     #get_window().content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
